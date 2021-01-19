@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import { LayoutHeader } from './LayoutHeader'
 
 export class AppContainer extends Component {
   render() {
     return (
       <div>
-        <p>Pronto para começar!</p>
+        <LayoutHeader />
       </div>
     )
   }
