@@ -1,10 +1,14 @@
-import React from 'react'
-import { AppContainer } from './components/AppContainer'
+import React from "react";
+import Home from "./Components/Home/Home"
 
-function App() {
-	return (
-        <AppContainer />
-	)
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Home />
+      </div>
+    )
+  }
 }
 
-export default App
+export default App;
