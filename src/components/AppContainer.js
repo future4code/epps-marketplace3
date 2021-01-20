@@ -1,16 +1,17 @@
-import React, { Component } from 'react'
-import Footer from '../components/Footer/Footer'
-import { LayoutHeader } from '../components/Header/LayoutHeader'
+import React, { Component } from "react";
+import Footer from "../components/Footer/Footer";
+import Home from "../components/Home/Home"
+import { LayoutHeader } from "./LayoutHeader";
 
 
 export class AppContainer extends Component {
   render() {
     return (
       <div>
-        <LayoutHeader />  
-        
-        <Footer/>
+        <LayoutHeader />
+        <Home />
+        <Footer />
       </div>
-    )
+    );
   }
 }
