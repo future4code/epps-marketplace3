@@ -7,23 +7,20 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import { Icon } from "@material-ui/core";
 
 
-
-const DivFooter = styled.div`
-    height:100vh;
+const FooterContainer = styled.div`
     width:100vw;
-    background-color:white;
+    background-color:#5B5B58;
 `
 
-
 const BoxFooter = styled.div`
-    background-color:#5B5B58;
-    width:100vw;
-    height:6vh;
-    position: absolute;
+    
+    width:70vw;
+    height:5vh;
+    margin:0 auto;
     display:flex;
     flex-direction:block;
     justify-items:center;
-    justify-content:center;
+    justify-content:space-around;
     align-items:center;
     
 `
@@ -43,27 +40,42 @@ const LinksMidia = styled.a`
     flex-direction:block;
 
 `
+const DivIcons = styled.div`
+  display:flex;
 
 
+
+`
+
+
+
+
+const DivParagrafos = styled.div`
+  display:flex;
+
+
+`
 
 class Footer extends React.Component {
   render() {
     return (
-      <DivFooter>
+      <FooterContainer>
         <BoxFooter>
-          
-            <LinksMidia href='www.instagram.com'><FacebookIcon/> </LinksMidia>
-            <LinksMidia href='facebook.com'><InstagramIcon/></LinksMidia>
-            <LinksMidia href='twitter.com'><TwitterIcon/></LinksMidia>
-            
-            
-            <Paragrafo>E-mail: contato@elo4.com.br</Paragrafo>
-            <Paragrafo>Telefone: +55 (011) 3366-3366</Paragrafo>
+            <DivIcons>
+              <LinksMidia href='www.instagram.com'><FacebookIcon/> </LinksMidia>
+              <LinksMidia href='facebook.com'><InstagramIcon/></LinksMidia>
+              <LinksMidia href='twitter.com'><TwitterIcon/></LinksMidia>
+            </DivIcons>
+            <p>|</p>
+            <DivParagrafos>
+              <Paragrafo>E-mail: contato@elo4.com.br</Paragrafo>
+              <Paragrafo>Telefone: +55 (011) 3366-3366</Paragrafo>
+            </DivParagrafos>
           
           
         </BoxFooter>
 
-    </DivFooter>
+    </FooterContainer>
     );
   }
 }
