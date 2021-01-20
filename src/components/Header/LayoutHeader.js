@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from "styled-components"
-import LogoImg from "../imgs/elo4-logo-cortada.png"
+import LogoImg from "../../imgs/elo4-logo-cortada.png"
+
 
 
 const BoxHeader = styled.div`
