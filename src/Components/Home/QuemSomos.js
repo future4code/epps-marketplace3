@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Logo from "../Img/LogoElo4.png";
+import Logo from "../../imgs/elo4-logo.png";
 
 const QuemSomosContainer = styled.div`
   display: flex;

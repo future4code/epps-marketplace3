@@ -1,6 +1,6 @@
 import React from "react";
 import QuemSomos from "./QuemSomos";
-import Carrossel from "./Carrossel"
+import Carrossel from "./Carrossel";
 
 class Home extends React.Component {
   render() {

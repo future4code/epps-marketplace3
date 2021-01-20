@@ -1,13 +1,13 @@
 import React from "react";
-import Home from "./Components/Home/Home"
+import { AppContainer } from "./components/AppContainer";
 
 class App extends React.Component {
   render() {
     return (
       <div>
-        <Home />
+        <AppContainer />
       </div>
-    )
+    );
   }
 }
 

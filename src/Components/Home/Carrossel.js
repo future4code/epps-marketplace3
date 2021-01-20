@@ -1,8 +1,8 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
-import Familia from "../Img/HappyFamily.jpg";
-import JogoArtesão from "../Img/ObjetosArtesao.jpg";
-import Atendimento from "../Img/Atendimento.jpg";
+import Familia from "../../imgs/EmpresaFamilia.jpg";
+import JogoArtesão from "../../imgs/ObjetosArtesao.jpg";
+import Atendimento from "../../imgs/Atendimento.jpg";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -59,7 +59,7 @@ class Carrossel extends React.Component {
                     <h3>Atendimento.</h3>
                     <p>
                       Estamos em contato com o cliente sempre no que o mesmo
-                      precisar durante todos os dias da semana
+                      precisar durante todos os dias da semana.
                     </p>
                   </Carousel.Caption>
                 </Carousel.Item>
