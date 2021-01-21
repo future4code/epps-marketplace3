@@ -3,11 +3,9 @@ import styled from 'styled-components'
 
 const HeaderProductContainer = styled.div`
     display: flex;
-   /*  background-color: #f2f2f2; */
     align-items: center;
     justify-content: space-around;
     margin: 40px 0 20px 0;
-    /* height: 10vh; */
 `
 
 const TitleProductsContainer = styled.div`

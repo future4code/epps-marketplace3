@@ -15,19 +15,6 @@ const BtnCartContainer = styled.div`
     bottom: 40px;
 `
 
-/* const BtnCart = styled.button`
-    border: none;
-    background-color: #F2970B;
-    opacity: 0.6;
-
-    &:focus{
-        outline: none;
-    }
-
-    &:hover{
-        opacity: 1;
-    }
-` */
 
 const ImgCart = styled.img`
     height: 40px;
@@ -52,9 +39,7 @@ export default class ProductPage extends React.Component{
                 <ContentProduct />
                 {this.state.showCart && <Cart />}
                 <BtnCartContainer>
-                    {/* <BtnCart onClick={this.changeCart}> */}
-                        <ImgCart src={ShoppingCart} alt='botão do carrinho' onClick={this.changeCart}/>
-                   {/*  </BtnCart> */}
+                    <ImgCart src={ShoppingCart} alt='botão do carrinho' onClick={this.changeCart}/>
                 </BtnCartContainer>
             </ProductPageContainer>
         )
