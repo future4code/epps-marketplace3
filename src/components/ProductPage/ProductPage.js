@@ -7,6 +7,7 @@ import ShoppingCart from '../../imgs/imgCart/shopping-cart.png'
 
 const ProductPageContainer = styled.div`
     display: flex;
+    min-height: 80vh
 `
 
 const BtnCartContainer = styled.div`

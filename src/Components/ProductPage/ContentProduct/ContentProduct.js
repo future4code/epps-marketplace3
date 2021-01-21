@@ -4,7 +4,7 @@ import HeaderContentProducts from './HeadeContectProdutcts/HeaderContentProducts
 import Product from './ProductCard/Product'
 
 const ProductContentProduct = styled.div`
-    width: 100%
+    width: 100%;
 `
 
 
