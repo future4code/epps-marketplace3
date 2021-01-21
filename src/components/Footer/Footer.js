@@ -5,7 +5,7 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 import TwitterIcon from "@material-ui/icons/Twitter";
 
 const FooterContainer = styled.div`
-  width: 99.1vw;
+  width: 100%;
   background-color: #5b5b58;
 `;
 
@@ -24,7 +24,7 @@ const Paragrafo = styled.p`
   display: flex;
   flex-direction: block;
   align-items: center;
-  margin-right:10px;
+  margin:0 20px 0 0;
 `;
 
 const LinksMidia = styled.a`
@@ -57,7 +57,7 @@ class Footer extends React.Component {
               <TwitterIcon />
             </LinksMidia>
           </DivIcons>
-          <p>|</p>
+          <Paragrafo>|</Paragrafo>
           <DivParagrafos>
             <Paragrafo>E-mail: contato@elo4.com.br</Paragrafo>
             <Paragrafo>Telefone: +55 (011) 3366-3366</Paragrafo>
