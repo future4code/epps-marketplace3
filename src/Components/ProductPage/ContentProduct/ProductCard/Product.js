@@ -11,7 +11,10 @@ export default class Product extends React.Component{
     render(){
         return(
             <ProductContainer>
-                <ProductCard />
+                <ProductCard 
+                    produtos={this.props.produtos}
+                    onClickAddToCart={this.props.onClickAddToCart}
+                />
             </ProductContainer>
         )
     }
