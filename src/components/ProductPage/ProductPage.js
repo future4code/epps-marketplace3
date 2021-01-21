@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react'
 import styled from 'styled-components'
 import ProductAside from './ProductAside/ProductAside'
@@ -45,3 +46,17 @@ export default class ProductPage extends React.Component{
         )
     }
 }
+=======
+import React from "react";
+
+class LayoutHeader extends React.Component {
+    render () {
+        return (
+            <div>
+            </div>
+        )
+    }
+}
+
+export default LayoutHeader
+>>>>>>> e51cd8c (Testes de renderização)
