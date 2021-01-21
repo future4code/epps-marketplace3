@@ -10,12 +10,13 @@ import {
 import styled from "styled-components";
 
 const DivPrincipal = styled.div`
-width:80%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin:0 auto;
+  margin: 0 auto;
+  height:80vh;
 `;
 
 const Input = styled(TextField)`
@@ -40,48 +41,38 @@ class AddProductPage extends Component {
         <h1>Área do Vendedor:</h1>
         <InputDiv tamanho="80%">
           <Input
-            id="outlined-basic"
+            id="filled-basic"
             tamanho="100%"
             label="Nome do Produto"
-            variant="outlined"
+            variant="filled"
           />
         </InputDiv>
 
         <InputDiv tamanho="80%">
           <Input
-            id="outlined-basic"
+            id="filled-basic"
             tamanho="100%"
             label="Url da Imagem"
-            variant="outlined"
+            variant="filled"
           />
         </InputDiv>
 
         <InputDiv tamanho="80%">
           <Input
-            id="outlined-basic"
+            id="filled-basic"
             tamanho="100%"
             label="Descriçao"
-            variant="outlined"
+            variant="filled"
           />
         </InputDiv>
-
         <InputDiv tamanho="80%">
           <InputDiv tamanho="25%">
             <Input
-              id="outlined-basic"
-              tamanho="100%"
-              type="number"
-              label="Parcelas"
-              variant="outlined"
-            />
-          </InputDiv>
-          <InputDiv tamanho="25%">
-            <Input
-              id="outlined-basic"
+              id="filled-basic"
               type="number"
               tamanho="100%"
               label="Preço"
-              variant="outlined"
+              variant="filled"
             />
           </InputDiv>
           <FormControl
@@ -89,16 +80,16 @@ class AddProductPage extends Component {
               margin: 5,
               minWidth: 200,
             }}
-            variant="outlined"
+            variant="filled"
           >
             <InputLabel>Categoria</InputLabel>
             <Select label="Categoria">
               <MenuItem value="">
                 <em>Nenhum</em>
               </MenuItem>
-              <MenuItem value={1}>Praia</MenuItem>
-              <MenuItem value={2}>Piscina</MenuItem>
-              <MenuItem value={3}>Casa</MenuItem>
+              <MenuItem value={1}>Mascara</MenuItem>
+              <MenuItem value={2}>Cozinha</MenuItem>
+              <MenuItem value={3}>Bijuterias</MenuItem>
             </Select>
           </FormControl>
           <FormControl
@@ -106,7 +97,7 @@ class AddProductPage extends Component {
               margin: 5,
               minWidth: 200,
             }}
-            variant="outlined"
+            variant="filled"
           >
             <InputLabel>Forma de Pag.</InputLabel>
             <Select label="Forma de Pag.">
@@ -114,8 +105,30 @@ class AddProductPage extends Component {
                 <em>Nenhum</em>
               </MenuItem>
               <MenuItem value={1}>Boleto</MenuItem>
-              <MenuItem value={2}>Pix</MenuItem>
-              <MenuItem value={3}>Cartão</MenuItem>
+              <MenuItem value={2}>Cartão de crédito</MenuItem>
+              <MenuItem value={3}>Cartão de débito</MenuItem>
+              <MenuItem value={4}>Pix</MenuItem>
+              <MenuItem value={5}>Bitcoin</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl
+            style={{
+              margin: 5,
+              minWidth: 200,
+            }}
+            variant="filled"
+          >
+            <InputLabel>parcelas</InputLabel>
+            <Select label="Categoria">
+              <MenuItem value="">
+                <em>Nenhum</em>
+              </MenuItem>
+              <MenuItem value={1}>1</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
             </Select>
           </FormControl>
         </InputDiv>
@@ -126,6 +139,8 @@ class AddProductPage extends Component {
               borderRadius: 20,
               backgroundColor: "#f2a649",
               color: "white",
+              border:'none',
+              outline:'none',
             }}
             variant="contained"
           >
