@@ -78,6 +78,26 @@ export default class ProductCard extends React.Component{
                     <PriceP>Produto 8</PriceP>
                     <PriceP>R$ 00,00</PriceP>
                 </ProductCardBox>
+                <ProductCardBox>
+                    <img src='https://picsum.photos/200/300?random=9' alt='imagem produto'/>
+                    <PriceP>Produto 9</PriceP>
+                    <PriceP>R$ 00,00</PriceP>
+                </ProductCardBox>
+                <ProductCardBox>
+                    <img src='https://picsum.photos/200/300?random=10' alt='imagem produto'/>
+                    <PriceP>Produto 10</PriceP>
+                    <PriceP>R$ 00,00</PriceP>
+                </ProductCardBox>
+                <ProductCardBox>
+                    <img src='https://picsum.photos/200/300?random=11' alt='imagem produto'/>
+                    <PriceP>Produto 11</PriceP>
+                    <PriceP>R$ 00,00</PriceP>
+                </ProductCardBox>
+                <ProductCardBox>
+                    <img src='https://picsum.photos/200/300?random=12' alt='imagem produto'/>
+                    <PriceP>Produto 12</PriceP>
+                    <PriceP>R$ 00,00</PriceP>
+                </ProductCardBox>
             </ProductCardContainer>
         )
     }

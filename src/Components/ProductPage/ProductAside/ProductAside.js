@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const ProductAsideContainer = styled.div`
     background-color: #f2970B;
-    width: 400px;
+    width: 300px;
     display: flex;
     justify-content: center;
 `
