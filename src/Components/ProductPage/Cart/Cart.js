@@ -10,7 +10,6 @@ const ProductCartContainer = styled.div`
   width: 500px;
 `;
 const BoxCart = styled.div`
-  /* position: fixed; */
   margin: 40px;
 `;
 
@@ -69,9 +68,8 @@ const BtnCheckout = styled.button`
   background-color: #f1f1f1;
 `;
 
-export default class Cart extends React.Component {
+class Cart extends React.Component {
   render() {
-    console.log("Produtos no componente cart", this.props.listCart);
     const productsCart = this.props.listCart;
     const infosProductsCart = productsCart.map((product) => {
       return (
@@ -79,13 +77,15 @@ export default class Cart extends React.Component {
           <BoxProductNameAndDelete>
             <p>{product.name}</p>
             <button>
-              <ImgBtnDelete src={ImgDelete} alt="botão para deletar produto" />
+              <ImgBtnDelete
+                src={ImgDelete}
+                alt="botão para deletar produto"
+              />
             </button>
           </BoxProductNameAndDelete>
           <TagP>Quantidade: {product.quantidade}</TagP>
           <TagP>
-            Total do produto: R${" "}
-            {parseInt(product.price).toFixed(2).replace(".", ",")}
+            Total do produto: R${product.price * product.quantidade}
           </TagP>
         </BoxItemCart>
       );
@@ -135,3 +135,5 @@ export default class Cart extends React.Component {
     );
   }
 }
+
+export default Cart
