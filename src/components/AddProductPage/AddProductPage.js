@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import {
   TextField,
   Button,
@@ -16,7 +17,7 @@ const DivPrincipal = styled.div`
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  height:80vh;
+  height: 80vh;
 `;
 
 const Input = styled(TextField)`
@@ -35,44 +36,112 @@ const ButtonDiv = styled.div`
 `;
 
 class AddProductPage extends Component {
+  state = {
+    inputNome: "",
+    inputDescricao: "",
+    inputPreco: 0,
+    formaDePagamento: "",
+    selectCategoria: "",
+    inputImagem: [],
+    selectParcelas: 1,
+  };
+
+  enviarProduto = () => {
+    const body = {
+      name: this.state.inputNome,
+      description: this.state.inputDescricao,
+      price: this.state.inputPreco,
+      paymentMethod: this.state.formaDePagamento,
+      category: this.state.selectCategoria,
+      photos: [this.state.inputImagem],
+      installments: this.state.selectParcelas,
+    };
+
+    axios
+      .post(
+        "https://us-central1-labenu-apis.cloudfunctions.net/eloFourOne/products",
+        body
+      )
+      .then((response) => {
+        alert("Produto cadastrado!");
+      })
+      .catch((error) => {
+        alert("Erro ao cadastrar produto,tente novamente.");
+      });
+  };
+
+  onChangeInputNome = (event) => {
+    this.setState({ inputNome: event.target.value });
+  };
+
+  onChangeInputDescricao = (event) => {
+    this.setState({ inputDescricao: event.target.value });
+  };
+
+  onChangeInputPreco = (event) => {
+    this.setState({ inputPreco: event.target.value });
+  };
+
+  onChangeFormaDePagamento = (event) => {
+    this.setState({ formaDePagamento: event.target.value });
+  };
+
+  onChangeSelectCategoria = (event) => {
+    this.setState({ selectCategoria: event.target.value });
+    console.log("Categoria:", event.target.value)
+  };
+
+  onChangeInputImagem = (event) => {
+    this.setState({ inputImagem: event.target.value });
+  };
+
+  onChangeSelectParcelas = (event) => {
+    this.setState({ selectParcelas: event.target.value });
+  };
+
   render() {
     return (
       <DivPrincipal>
         <h1>Área do Vendedor:</h1>
         <InputDiv tamanho="80%">
           <Input
-            id="filled-basic"
             tamanho="100%"
             label="Nome do Produto"
             variant="filled"
+            value={this.state.inputNome}
+            onChange={this.onChangeInputNome}
           />
         </InputDiv>
 
         <InputDiv tamanho="80%">
           <Input
-            id="filled-basic"
             tamanho="100%"
-            label="Url da Imagem"
+            label="URL da Imagem"
             variant="filled"
+            placeholder= "Coloque apenas uma foto do produto."
+            value={this.state.inputImagem}
+            onChange={this.onChangeInputImagem}
           />
         </InputDiv>
 
         <InputDiv tamanho="80%">
           <Input
-            id="filled-basic"
             tamanho="100%"
             label="Descriçao"
             variant="filled"
+            value={this.state.inputDescricao}
+            onChange={this.onChangeInputDescricao}
           />
         </InputDiv>
         <InputDiv tamanho="80%">
           <InputDiv tamanho="25%">
             <Input
-              id="filled-basic"
               type="number"
               tamanho="100%"
               label="Preço"
               variant="filled"
+              value={this.state.inputPreco}
+              onChange={this.onChangeInputPreco}
             />
           </InputDiv>
           <FormControl
@@ -83,13 +152,17 @@ class AddProductPage extends Component {
             variant="filled"
           >
             <InputLabel>Categoria</InputLabel>
-            <Select label="Categoria">
+            <Select
+              label="Categoria"
+              value={this.state.selectCategoria}
+              onChange={this.onChangeSelectCategoria}
+            >
               <MenuItem value="">
                 <em>Nenhum</em>
               </MenuItem>
-              <MenuItem value={1}>Mascara</MenuItem>
-              <MenuItem value={2}>Cozinha</MenuItem>
-              <MenuItem value={3}>Bijuterias</MenuItem>
+              <MenuItem value={"mascara"}>Mascara</MenuItem>
+              <MenuItem value={"cozinha"}>Cozinha</MenuItem>
+              <MenuItem value={"bijuterias"}>Bijuterias</MenuItem>
             </Select>
           </FormControl>
           <FormControl
@@ -99,18 +172,23 @@ class AddProductPage extends Component {
             }}
             variant="filled"
           >
-            <InputLabel>Forma de Pag.</InputLabel>
-            <Select label="Forma de Pag.">
+            <InputLabel>Forma de Pagamento</InputLabel>
+            <Select
+              label="Forma de Pagamento"
+              value={this.state.formaDePagamento}
+              onChange={this.onChangeFormaDePagamento}
+            >
               <MenuItem value="">
                 <em>Nenhum</em>
               </MenuItem>
-              <MenuItem value={1}>Boleto</MenuItem>
-              <MenuItem value={2}>Cartão de crédito</MenuItem>
-              <MenuItem value={3}>Cartão de débito</MenuItem>
-              <MenuItem value={4}>Pix</MenuItem>
-              <MenuItem value={5}>Bitcoin</MenuItem>
+              <MenuItem value={"boleto"}>Boleto</MenuItem>
+              <MenuItem value={"cartãocredito"}>Cartão de Crédito</MenuItem>
+              <MenuItem value={"cartãodedito"}>Cartão de Dédito</MenuItem>
+              <MenuItem value={"bitcoin"}>Bitcoin</MenuItem>
+              <MenuItem value={"pix"}>Pix</MenuItem>
             </Select>
           </FormControl>
+
           <FormControl
             style={{
               margin: 5,
@@ -118,8 +196,12 @@ class AddProductPage extends Component {
             }}
             variant="filled"
           >
-            <InputLabel>parcelas</InputLabel>
-            <Select label="Categoria">
+            <InputLabel>Parcelas</InputLabel>
+            <Select
+              label="Parcelas"
+              value={this.state.selectParcelas}
+              onChange={this.onChangeSelectParcelas}
+            >
               <MenuItem value="">
                 <em>Nenhum</em>
               </MenuItem>
@@ -135,12 +217,13 @@ class AddProductPage extends Component {
 
         <ButtonDiv>
           <Button
+            onClick={this.enviarProduto}
             style={{
               borderRadius: 20,
               backgroundColor: "#f2a649",
               color: "white",
-              border:'none',
-              outline:'none',
+              border: "none",
+              outline: "none",
             }}
             variant="contained"
           >
