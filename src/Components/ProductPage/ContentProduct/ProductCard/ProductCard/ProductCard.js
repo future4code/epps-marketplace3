@@ -22,36 +22,17 @@ const PriceP = styled.p`
 
 export default class ProductCard extends React.Component {
 
-    state = {
-        products: []
-    }
-
-    componentDidMount() {
-        this.getAllProducts()
-    }
-
-    getAllProducts = () => {
-        const request = axios.get('https://us-central1-labenu-apis.cloudfunctions.net/eloFourOne/products')
-            .then((response) => {
-                console.log('Get produtos', response.data.products)
-                this.setState({ products: response.data.products })
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }
-
-
     render() {
-        console.log('Produtos estado', this.state.products)
-        const productsRender = this.state.products.map((product) => {
+        
+        console.log('Produtos estado', this.props.produtos)
+        const productsRender = this.props.produtos.map((product) => {
             return (
                 <ProductCardBox>
                     <img src={product.photos}/>
                     <h3>{product.name}</h3>
                     <p>{product.description}</p>
                     <PriceP>Valor: {product.price}</PriceP>
-                    <button>Adicionar Produtos</button>
+                    <button onClick={() => this.props.onClickAddToCart(product)}>Adicionar Produtos</button>
                 </ProductCardBox>
             )
         })

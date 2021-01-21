@@ -10,9 +10,13 @@ const ProductCartContainer = styled.div`
     width: 500px;
 
 `
-const BoxCar = styled.div`
-    position: fixed;
-    margin-top: 40px;
+const BoxCart = styled.div`
+    /* position: fixed; */
+    margin: 40px;
+`
+
+const BoxItemCart = styled.div`
+    margin-bottom: 20px;
 `
 
 const BoxProductNameAndDelete = styled.div`
@@ -67,20 +71,32 @@ const BtnCheckout = styled.button`
 `
 
 export default class Cart extends React.Component {
+
     render() {
+        console.log('Produtos no componente cart', this.props.listCart)
+        const productsCart = this.props.listCart
+        const infosProductsCart = productsCart.map((product) => {
+            return (
+                <BoxItemCart>
+                    <BoxProductNameAndDelete>
+                        <p>{product.name}</p>
+                        <button><ImgBtnDelete src={ImgDelete} alt='botão para deletar produto' /></button>
+                    </BoxProductNameAndDelete>
+                    <TagP>Quantidade: {product.quantidade}</TagP>
+                    <TagP>Total do produto: R$ {parseInt(product.price).toFixed(2).replace('.', ',')}</TagP>
+                </BoxItemCart>
+            )
+        }) 
         return (
             <ProductCartContainer>
-                <BoxCar>
+                <BoxCart>
                     <h1>Carrinho</h1>
                     <BoxDetailsCart>
-                        <BoxProductNameAndDelete>
-                            <TagP>Nome do Produto</TagP>
-                            <BtnDelete>
-                                <ImgBtnDelete src={ImgDelete} alt='botão para deletar produto' />
-                            </BtnDelete>
-                        </BoxProductNameAndDelete>
-                        <TagP>Quantidade:</TagP>
-                        <TagP>Total: R$ 00,00</TagP>
+
+                        {infosProductsCart}
+                        <div>
+                            <p>Total: </p>
+                        </div>
                     </BoxDetailsCart>
 
                     <BoxSelectCart>
@@ -108,7 +124,7 @@ export default class Cart extends React.Component {
                     <BoxBtnCheckout>
                         <BtnCheckout>Finalizar Compra</BtnCheckout>
                     </BoxBtnCheckout>
-                </BoxCar>
+                </BoxCart>
             </ProductCartContainer>
         )
     }
