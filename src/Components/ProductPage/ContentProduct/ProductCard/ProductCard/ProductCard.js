@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
 
 const ProductCardContainer = styled.div`
     display: flex;
@@ -19,85 +20,45 @@ const PriceP = styled.p`
     margin: 0;
 `
 
-export default class ProductCard extends React.Component{
+export default class ProductCard extends React.Component {
 
     state = {
-        name: '',
-        img: '',
-        price: '',
+        products: []
+    }
+
+    componentDidMount() {
+        this.getAllProducts()
+    }
+
+    getAllProducts = () => {
+        const request = axios.get('https://us-central1-labenu-apis.cloudfunctions.net/eloFourOne/products')
+            .then((response) => {
+                console.log('Get produtos', response.data.products)
+                this.setState({ products: response.data.products })
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
 
-    render(){
-        return(
+    render() {
+        console.log('Produtos estado', this.state.products)
+        const productsRender = this.state.products.map((product) => {
+            return (
+                <ProductCardBox>
+                    <img src={product.photos}/>
+                    <h3>{product.name}</h3>
+                    <p>{product.description}</p>
+                    <PriceP>Valor: {product.price}</PriceP>
+                </ProductCardBox>
+            )
+        })
+        return (
             <ProductCardContainer>
-                <ProductCardBox>
-                    <img src='https://picsum.photos/200/300?random=1' alt='imagem produto'/>
-                    <PriceP>Produto 1</PriceP>
-                    <PriceP>R$ 00,00</PriceP>
-                </ProductCardBox>
-
-                <ProductCardBox>
-                    <img src='https://picsum.photos/200/300?random=2' alt='imagem produto'/>
-                    <PriceP>Produto 2</PriceP>
-                    <PriceP>R$ 00,00</PriceP>
-                </ProductCardBox>  
-
-                <ProductCardBox>
-                    <img src='https://picsum.photos/200/300?random=3' alt='imagem produto'/>
-                    <PriceP>Produto 3</PriceP>
-                    <PriceP>R$ 00,00</PriceP>
-                </ProductCardBox> 
-
-                <ProductCardBox>
-                    <img src='https://picsum.photos/200/300?random=4' alt='imagem produto'/>
-                    <PriceP>Produto 4</PriceP>
-                    <PriceP>R$ 00,00</PriceP>
-                </ProductCardBox> 
-
-                <ProductCardBox>
-                    <img src='https://picsum.photos/200/300?random=5' alt='imagem produto'/>
-                    <PriceP>Produto 5</PriceP>
-                    <PriceP>R$ 00,00</PriceP>
-                </ProductCardBox>
-
-                <ProductCardBox>
-                    <img src='https://picsum.photos/200/300?random=6' alt='imagem produto'/>
-                    <PriceP>Produto 6</PriceP>
-                    <PriceP>R$ 00,00</PriceP>
-                </ProductCardBox>
-
-                <ProductCardBox>
-                    <img src='https://picsum.photos/200/300?random=7' alt='imagem produto'/>
-                    <PriceP>Produto 7</PriceP>
-                    <PriceP>R$ 00,00</PriceP>
-                </ProductCardBox>
-
-                <ProductCardBox>
-                    <img src='https://picsum.photos/200/300?random=8' alt='imagem produto'/>
-                    <PriceP>Produto 8</PriceP>
-                    <PriceP>R$ 00,00</PriceP>
-                </ProductCardBox>
-                <ProductCardBox>
-                    <img src='https://picsum.photos/200/300?random=9' alt='imagem produto'/>
-                    <PriceP>Produto 9</PriceP>
-                    <PriceP>R$ 00,00</PriceP>
-                </ProductCardBox>
-                <ProductCardBox>
-                    <img src='https://picsum.photos/200/300?random=10' alt='imagem produto'/>
-                    <PriceP>Produto 10</PriceP>
-                    <PriceP>R$ 00,00</PriceP>
-                </ProductCardBox>
-                <ProductCardBox>
-                    <img src='https://picsum.photos/200/300?random=11' alt='imagem produto'/>
-                    <PriceP>Produto 11</PriceP>
-                    <PriceP>R$ 00,00</PriceP>
-                </ProductCardBox>
-                <ProductCardBox>
-                    <img src='https://picsum.photos/200/300?random=12' alt='imagem produto'/>
-                    <PriceP>Produto 12</PriceP>
-                    <PriceP>R$ 00,00</PriceP>
-                </ProductCardBox>
+                
+                {productsRender}
+                
             </ProductCardContainer>
         )
     }
