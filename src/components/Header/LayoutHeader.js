@@ -1,8 +1,6 @@
-import React from 'react';
-import styled from "styled-components"
-import LogoImg from "../../imgs/elo4-logo-cortada.png"
-
-
+import React from "react";
+import styled from "styled-components";
+import LogoImg from "../../imgs/elo4-logo-cortada.png";
 
 const BoxHeader = styled.div`
   display: flex;
@@ -55,13 +53,18 @@ const BotaoHeader = styled.button`
 `;
 
 export class LayoutHeader extends React.Component {
+
   render() {
     return (
       <BoxHeader>
         <NavBar>
           <div>
-            <Hiperlinks onClick={this.irParaHome}>
-              <ImgLogoHeader src={LogoImg} alt="logo elo4" />
+            <Hiperlinks>
+              <ImgLogoHeader
+                src={LogoImg}
+                onClick={this.props.irParaHome}
+                alt="logo elo4"
+              />
             </Hiperlinks>
           </div>
           <UlistasBtnHeader>
@@ -69,13 +72,14 @@ export class LayoutHeader extends React.Component {
               <Hiperlinks onClick={this}>Quem somos?</Hiperlinks>
             </ListaBtnHeader>
             <ListaBtnHeader>
-              <BotaoHeader onClick={this}>Produtos</BotaoHeader>
+              <BotaoHeader onClick={this.props.irParaProdutos}>
+                Produtos
+              </BotaoHeader>
             </ListaBtnHeader>
             <ListaBtnHeader>
-              <BotaoHeader onClick={this}>Anunciar Produtos</BotaoHeader>
-            </ListaBtnHeader>
-            <ListaBtnHeader>
-              <BotaoHeader onClick={this}>Carrinho</BotaoHeader>
+              <BotaoHeader onClick={this.props.irParaFormulario}>
+                Anunciar Produtos
+              </BotaoHeader>
             </ListaBtnHeader>
           </UlistasBtnHeader>
         </NavBar>
