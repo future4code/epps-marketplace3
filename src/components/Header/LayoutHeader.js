@@ -81,9 +81,6 @@ export class LayoutHeader extends React.Component {
                 Anunciar Produtos
               </BotaoHeader>
             </ListaBtnHeader>
-            <ListaBtnHeader>
-              <BotaoHeader onClick={this}>Carrinho</BotaoHeader>
-            </ListaBtnHeader>
           </UlistasBtnHeader>
         </NavBar>
       </BoxHeader>

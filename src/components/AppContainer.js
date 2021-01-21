@@ -3,7 +3,7 @@ import Footer from "../components/Footer/Footer";
 import Home from "../components/Home/Home";
 import { LayoutHeader } from "../components/Header/LayoutHeader";
 import AddProductPage from "./AddProductPage/AddProductPage";
-import ProductPage from "./ProductPage/ProductPage"
+import ProductPage from "./ProductPage/ProductPage";
 
 export class AppContainer extends Component {
   state = {

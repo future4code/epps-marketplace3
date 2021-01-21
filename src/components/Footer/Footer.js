@@ -1,14 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  AccessAlarm,
-  InsertChartOutlinedTwoTone,
-  ThreeDRotation,
-} from "@material-ui/icons";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import TwitterIcon from "@material-ui/icons/Twitter";
-import { Icon } from "@material-ui/core";
 
 const FooterContainer = styled.div`
   width: 99.1vw;
