@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import ProductCard from './ProductPage/ProductCard'
+import ProductCard from './ProductCard/ProductCard'
 
 const ProductContainer = styled.div`
 

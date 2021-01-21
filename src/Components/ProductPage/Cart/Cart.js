@@ -45,6 +45,7 @@ const ImgBtnDelete = styled.img`
 
 const BoxDetailsCart = styled.div`
     margin: 20px 0;
+    width: 250px;
 `
 
 const BoxSelectCart = styled.div`
