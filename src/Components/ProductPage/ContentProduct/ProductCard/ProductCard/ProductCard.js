@@ -51,6 +51,7 @@ export default class ProductCard extends React.Component {
                     <h3>{product.name}</h3>
                     <p>{product.description}</p>
                     <PriceP>Valor: {product.price}</PriceP>
+                    <button>Adicionar Produtos</button>
                 </ProductCardBox>
             )
         })
