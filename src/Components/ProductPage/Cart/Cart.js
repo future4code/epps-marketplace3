@@ -79,7 +79,6 @@ class Cart extends React.Component {
 
   render() {
     const productsCart = this.props.listCart;
-    console.log('prodtos no carrinho', productsCart)
     const totalValue = this.valueUpdate(this.props.listCart);
     const infosProductsCart = productsCart.map((product) => {
       return (

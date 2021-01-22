@@ -12,10 +12,14 @@ export default class ContentProduct extends React.Component {
   render() {
     return (
       <ProductContentProduct>
-        <HeaderContentProducts />
+        <HeaderContentProducts 
+            filtroProducts={this.props.filtroProducts}
+        />
         <Product
           produtos={this.props.produtos}
           onClickAddToCart={this.props.onClickAddToCart}
+          filterProducts={this.props.filterProducts}
+          valueFilter={this.props.valueFilter}
         />
       </ProductContentProduct>
     );
