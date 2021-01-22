@@ -27,6 +27,7 @@ export default class ProductPage extends React.Component {
     showCart: false,
     products: [],
     listCart: [],
+    filtro: '',
   };
 
   changeCart = () => {
@@ -65,18 +66,6 @@ export default class ProductPage extends React.Component {
     this.setState({ listCart: newListCart });
   };
 
-  /* deleteProductCart = (id) =>{
-    axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/eloFourOne/products/${id}`)
-    .then((resposnse) =>{
-      alert('O produto foi deletado com sucesso.')
-      console.log('id', id)
-    })
-    .catch((error) =>{
-      console.log('erro id', error)
-    })
-
-  } */
-
   deleteProductCart = (id) =>{
    let productDelete = [...this.state.listCart]
    let productCart = this.state.listCart.findIndex((product) => product.id === id)
@@ -84,6 +73,18 @@ export default class ProductPage extends React.Component {
    productDelete.splice(productCart, 1)
    this.setState({listCart: productDelete})
   }
+
+  onchangeProducts = (e) =>{
+    if(e.target.value === 'Crescente'){
+      this.setState({filtro: e.target.value})
+    } else if(e.target.value === 'Decrescente'){
+      this.setState({filtro: e.target.value})
+    } else if(e.target.value === 'nomeAZ'){
+      this.setState({filtro: e.target.value})
+    } else if(e.target.value === 'nomeZA'){
+      this.setState({filtro: e.target.value})
+    }
+  } 
 
   render() {
     return (
@@ -93,6 +94,9 @@ export default class ProductPage extends React.Component {
           produtos={this.state.products}
           onClickAddToCart={this.addCart}
           listCart={this.state.listCart}
+          filtroProducts={this.onchangeProducts}
+          filterProducts={this.filterProducts}
+          valueFilter={this.state.filtro}
         />
         {this.state.showCart && <Cart 
                                   listCart={this.state.listCart} 

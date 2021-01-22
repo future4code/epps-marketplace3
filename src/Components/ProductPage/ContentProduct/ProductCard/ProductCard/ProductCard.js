@@ -21,7 +21,37 @@ const PriceP = styled.p`
 
 export default class ProductCard extends React.Component {
   render() {
-    console.log("Produtos estado", this.props.produtos);
+
+    if(this.props.valueFilter === 'Crescente'){
+      this.props.produtos.sort(function (a, b){
+        return a.price - b.price
+      })
+    } else if(this.props.valueFilter === 'Decrescente'){
+      this.props.produtos.sort(function (a, b){
+        return b.price - a.price
+      })
+    } else if(this.props.valueFilter === 'nomeAZ'){
+       this.props.produtos.sort(function(a, b){
+        if(a.name < b.name){
+          return 1;
+        } else if(a.name > b.name){
+          return -1
+        } else {
+          return 0
+        }
+       })
+    } else if(this.props.valueFilter === 'nomeZA'){
+      this.props.produtos.sort(function(a, b){
+        if(a.name > b.name){
+          return 1;
+        } else if(a.name < b.name){
+          return -1
+        } else {
+          return 0
+        }
+       })
+    }
+    
     const productsRender = this.props.produtos.map((product) => {
       return (
         <ProductCardBox>
