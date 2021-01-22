@@ -79,15 +79,16 @@ class Cart extends React.Component {
 
   render() {
     const productsCart = this.props.listCart;
+    console.log('prodtos no carrinho', productsCart)
     const totalValue = this.valueUpdate(this.props.listCart);
     const infosProductsCart = productsCart.map((product) => {
       return (
         <BoxItemCart>
           <BoxProductNameAndDelete>
             <TagP>{product.name}</TagP>
-            <button>
+            <BtnDelete onClick={() => this.props.deleteProductCart(product.id)}>
               <ImgBtnDelete src={ImgDelete} alt="botão para deletar produto" />
-            </button>
+            </BtnDelete>
           </BoxProductNameAndDelete>
           <TagP>Quantidade: {product.quantidade}</TagP>
           <TagP>Total do produto: R${product.price * product.quantidade}</TagP>

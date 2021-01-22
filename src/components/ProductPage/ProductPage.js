@@ -65,6 +65,26 @@ export default class ProductPage extends React.Component {
     this.setState({ listCart: newListCart });
   };
 
+  /* deleteProductCart = (id) =>{
+    axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/eloFourOne/products/${id}`)
+    .then((resposnse) =>{
+      alert('O produto foi deletado com sucesso.')
+      console.log('id', id)
+    })
+    .catch((error) =>{
+      console.log('erro id', error)
+    })
+
+  } */
+
+  deleteProductCart = (id) =>{
+   let productDelete = [...this.state.listCart]
+   let productCart = this.state.listCart.findIndex((product) => product.id === id)
+
+   productDelete.splice(productCart, 1)
+   this.setState({listCart: productDelete})
+  }
+
   render() {
     return (
       <ProductPageContainer>
@@ -74,7 +94,10 @@ export default class ProductPage extends React.Component {
           onClickAddToCart={this.addCart}
           listCart={this.state.listCart}
         />
-        {this.state.showCart && <Cart listCart={this.state.listCart} />}
+        {this.state.showCart && <Cart 
+                                  listCart={this.state.listCart} 
+                                  deleteProductCart={this.deleteProductCart}
+                                />}
         <BtnCartContainer>
           <ImgCart
             src={ShoppingCart}
