@@ -49,17 +49,25 @@ export default class ProductAside extends React.Component {
           <TitleAside>Filtro</TitleAside>
           <AsideBoxItem>
             <label>Valor Máximo:</label>
-            <InputFiltro />
+            <InputFiltro 
+              onChange={this.props.onchangeValueMax}
+              type='number'
+            />
           </AsideBoxItem>
 
           <AsideBoxItem>
             <label>Valor Mínimo:</label>
-            <InputFiltro />
+            <InputFiltro 
+              onChange={this.props.onchangeValueMin}
+              type='number'
+            />
           </AsideBoxItem>
 
           <AsideBoxItem>
             <label>Nome do Produto</label>
-            <InputFiltro />
+            <InputFiltro 
+              onChange={this.props.onchangeInputSearch}
+            />
           </AsideBoxItem>
 
           <AsideBoxItem>
@@ -72,6 +80,7 @@ export default class ProductAside extends React.Component {
               <option>Bijuterias</option>
             </SelectFiltro>
           </AsideBoxItem>
+          <button onClick={this.props.filterProducts}>Buscar</button>
         </AsideBox>
       </ProductAsideContainer>
     );
