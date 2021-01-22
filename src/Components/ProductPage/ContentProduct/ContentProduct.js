@@ -10,7 +10,6 @@ const ProductContentProduct = styled.div`
 
 export default class ContentProduct extends React.Component {
   render() {
-    console.log("Produtos no carrinho: ", this.props.listCart);
     return (
       <ProductContentProduct>
         <HeaderContentProducts />
