@@ -18,8 +18,8 @@ export default class ContentProduct extends React.Component {
         <Product
           produtos={this.props.produtos}
           onClickAddToCart={this.props.onClickAddToCart}
-          filterProducts={this.props.filterProducts}
-          valueFilter={this.props.valueFilter}
+          /* filterProducts={this.props.filterProducts} */
+          valueOrder={this.props.valueOrder}
         />
       </ProductContentProduct>
     );

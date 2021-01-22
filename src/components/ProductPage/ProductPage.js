@@ -27,7 +27,10 @@ export default class ProductPage extends React.Component {
     showCart: false,
     products: [],
     listCart: [],
-    filtro: '',
+    order: '',
+    valueMin: 0,
+    valueMax: Infinity,
+    inputSearch: '',
   };
 
   changeCart = () => {
@@ -76,27 +79,66 @@ export default class ProductPage extends React.Component {
 
   onchangeProducts = (e) =>{
     if(e.target.value === 'Crescente'){
-      this.setState({filtro: e.target.value})
+      this.setState({order: e.target.value})
     } else if(e.target.value === 'Decrescente'){
-      this.setState({filtro: e.target.value})
+      this.setState({order: e.target.value})
     } else if(e.target.value === 'nomeAZ'){
-      this.setState({filtro: e.target.value})
+      this.setState({order: e.target.value})
     } else if(e.target.value === 'nomeZA'){
-      this.setState({filtro: e.target.value})
-    }
+      this.setState({order: e.target.value})
+    } else if(e.target.value === 'Sem ordem'){
+      this.setState({order: e.target.value})
+    } 
   } 
 
+  onchangeValueMin = (e) =>{
+    this.setState({valueMin: e.target.value})
+    this.filterProducts(e.target.value, this.state.valueMax, this.state.inputSearch)
+  }
+
+  onchangeValueMax = (e) =>{
+    this.setState({valueMax: e.target.value})
+    this.filterProducts(this.state.valueMin, e.target.value, this.state.inputSearch)
+    
+  }
+
+  onchangeInputSearch = (e) =>{
+    this.setState({inputSearch: e.target.value})
+    this.filterProducts(this.state.valueMin, this.state.valueMax, e.target.value)
+  }
+
+  filterProducts = (valueMin = this.state.valueMin, valueMax = this.state.valueMax, inputSearch = this.state.inputSearch) =>{
+    const productsListFiltered = this.state.products.filter((product) =>{
+      return product.price > valueMin
+    }).filter((product) =>{
+      return product.price < valueMax
+    }).filter((product) =>{
+      const nomeProduto = product.name.toLowerCase()
+      return nomeProduto.includes(inputSearch.toLocaleLowerCase())
+    })
+
+    this.setState({products: productsListFiltered})
+    return productsListFiltered
+  }
+
   render() {
+    console.log(this.state.products)
+    console.log('valor inputs filter:', this.state.inputSearch)
     return (
       <ProductPageContainer>
-        <ProductAside />
+        <ProductAside 
+          onchangeInputSearch={this.onchangeInputSearch}
+          onchangeValueMax={this.onchangeValueMax}
+          onchangeValueMin={this.onchangeValueMin}
+          filterProducts={this.filterProducts}
+          productList={this.state.products}
+        />
         <ContentProduct
           produtos={this.state.products}
           onClickAddToCart={this.addCart}
           listCart={this.state.listCart}
           filtroProducts={this.onchangeProducts}
-          filterProducts={this.filterProducts}
-          valueFilter={this.state.filtro}
+          valueOrder={this.state.order}
         />
         {this.state.showCart && <Cart 
                                   listCart={this.state.listCart} 

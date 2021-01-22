@@ -22,16 +22,18 @@ const PriceP = styled.p`
 export default class ProductCard extends React.Component {
   render() {
 
-    if(this.props.valueFilter === 'Crescente'){
-      this.props.produtos.sort(function (a, b){
+    const novoArray = [...this.props.produtos]
+
+    if(this.props.valueOrder === 'Crescente'){
+      novoArray.sort(function (a, b){
         return a.price - b.price
       })
-    } else if(this.props.valueFilter === 'Decrescente'){
-      this.props.produtos.sort(function (a, b){
+    } else if(this.props.valueOrder === 'Decrescente'){
+      novoArray.sort(function (a, b){
         return b.price - a.price
       })
-    } else if(this.props.valueFilter === 'nomeAZ'){
-       this.props.produtos.sort(function(a, b){
+    } else if(this.props.valueOrder === 'nomeAZ'){
+      novoArray.sort(function(a, b){
         if(a.name < b.name){
           return 1;
         } else if(a.name > b.name){
@@ -40,8 +42,8 @@ export default class ProductCard extends React.Component {
           return 0
         }
        })
-    } else if(this.props.valueFilter === 'nomeZA'){
-      this.props.produtos.sort(function(a, b){
+    } else if(this.props.valueOrder === 'nomeZA'){
+      novoArray.sort(function(a, b){
         if(a.name > b.name){
           return 1;
         } else if(a.name < b.name){
@@ -50,9 +52,9 @@ export default class ProductCard extends React.Component {
           return 0
         }
        })
-    }
-    
-    const productsRender = this.props.produtos.map((product) => {
+    } 
+
+    const productsRender = novoArray.map((product) => {
       return (
         <ProductCardBox>
           <img src={product.photos} />
