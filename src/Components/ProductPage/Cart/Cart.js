@@ -69,27 +69,32 @@ const BtnCheckout = styled.button`
 `;
 
 class Cart extends React.Component {
+  valueUpdate = (totalList) => {
+    let value = 0;
+    for (let i = 0; i < totalList.length; i++) {
+      value += totalList[i].price * totalList[i].quantidade;
+    }
+    return value;
+  };
+
   render() {
     const productsCart = this.props.listCart;
+    const totalValue = this.valueUpdate(this.props.listCart);
     const infosProductsCart = productsCart.map((product) => {
       return (
         <BoxItemCart>
           <BoxProductNameAndDelete>
-            <p>{product.name}</p>
+            <TagP>{product.name}</TagP>
             <button>
-              <ImgBtnDelete
-                src={ImgDelete}
-                alt="botão para deletar produto"
-              />
+              <ImgBtnDelete src={ImgDelete} alt="botão para deletar produto" />
             </button>
           </BoxProductNameAndDelete>
           <TagP>Quantidade: {product.quantidade}</TagP>
-          <TagP>
-            Total do produto: R${product.price * product.quantidade}
-          </TagP>
+          <TagP>Total do produto: R${product.price * product.quantidade}</TagP>
         </BoxItemCart>
       );
     });
+
     return (
       <ProductCartContainer>
         <BoxCart>
@@ -97,7 +102,7 @@ class Cart extends React.Component {
           <BoxDetailsCart>
             {infosProductsCart}
             <div>
-              <p>Total: </p>
+              <p>Total: R$ {totalValue} </p>
             </div>
           </BoxDetailsCart>
 
@@ -136,4 +141,4 @@ class Cart extends React.Component {
   }
 }
 
-export default Cart
+export default Cart;
