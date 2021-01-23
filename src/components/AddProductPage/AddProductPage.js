@@ -17,7 +17,6 @@ const DivPrincipal = styled.div`
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  height: 80vh;
 `;
 
 const Input = styled(TextField)`
@@ -44,6 +43,24 @@ class AddProductPage extends Component {
     selectCategoria: "",
     inputImagem: [],
     selectParcelas: 1,
+    productList: [],
+  };
+
+  componentDidMount() {
+    this.getProducts();
+  }
+
+  getProducts = () => {
+    axios
+      .get(
+        "https://us-central1-labenu-apis.cloudfunctions.net/eloFourOne/products"
+      )
+      .then((response) => {
+        this.setState({ productList: response.data.products });
+      })
+      .catch((error) => {
+        alert("Não funcionou.");
+      });
   };
 
   enviarProduto = () => {
@@ -88,7 +105,7 @@ class AddProductPage extends Component {
 
   onChangeSelectCategoria = (event) => {
     this.setState({ selectCategoria: event.target.value });
-    console.log("Categoria:", event.target.value)
+    console.log("Categoria:", event.target.value);
   };
 
   onChangeInputImagem = (event) => {
@@ -97,6 +114,22 @@ class AddProductPage extends Component {
 
   onChangeSelectParcelas = (event) => {
     this.setState({ selectParcelas: event.target.value });
+  };
+
+  deleteProduct = (id) => {
+    if (window.confirm("Quer mesmo deletar o anúncio do produto?")){
+    axios
+      .delete(
+        `https://us-central1-labenu-apis.cloudfunctions.net/eloFourOne/products/${id}`
+      )
+      .then((response) => {
+        alert("Anúncio do produto retirado.")
+        this.getProducts();
+      })
+      .catch((error) => {
+        alert("Produto não foi retirado, tente novamente.");
+      });
+    }
   };
 
   render() {
@@ -118,7 +151,7 @@ class AddProductPage extends Component {
             tamanho="100%"
             label="URL da Imagem"
             variant="filled"
-            placeholder= "Coloque apenas uma foto do produto."
+            placeholder="Coloque apenas uma foto do produto."
             value={this.state.inputImagem}
             onChange={this.onChangeInputImagem}
           />
@@ -160,9 +193,11 @@ class AddProductPage extends Component {
               <MenuItem value="">
                 <em>Nenhum</em>
               </MenuItem>
-              <MenuItem value={"mascara"}>Mascara</MenuItem>
-              <MenuItem value={"cozinha"}>Cozinha</MenuItem>
+              <MenuItem value={"acessorios"}>Acessórios</MenuItem>
+              <MenuItem value={"festa"}>Aniversário e festas</MenuItem>
               <MenuItem value={"bijuterias"}>Bijuterias</MenuItem>
+              <MenuItem value={"jogos"}>Jogos e Brinquedos</MenuItem>
+              <MenuItem value={"roupas"}>Roupas</MenuItem>
             </Select>
           </FormControl>
           <FormControl
@@ -230,6 +265,20 @@ class AddProductPage extends Component {
             Anunciar Produto
           </Button>
         </ButtonDiv>
+
+        <h1>Gerenciamento de produtos</h1>
+        <hr></hr>
+        {this.state.productList.map((product) => {
+          return (
+            <div>
+              <p>Nome do produto: {product.name}</p>
+              <p>Descrição: {product.description}</p>
+              <p>Preço: R${product.price},00</p>
+              <p>Categoria: {product.category}</p>
+              <button onClick={()=> {this.deleteProduct(product.id)}}>Deletar anuncio do produto.</button>
+            </div>
+          );
+        })}
       </DivPrincipal>
     );
   }
