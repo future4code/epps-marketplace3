@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import HeaderContentProducts from "./HeadeContectProdutcts/HeaderContentProducts";
 import Product from "./ProductCard/Product";
-import axios from "axios";
+
 
 const ProductContentProduct = styled.div`
   width: 100%;

@@ -48,7 +48,7 @@ export default class ProductPage extends React.Component {
       )
       .then((response) => {
         console.log("Get produtos", response.data.products);
-        this.setState({ products: response.data.products });
+        this.setState({ products: response.data.products, productsFiltered: response.data.products });
       })
       .catch((error) => {
         console.log(error);
@@ -93,12 +93,21 @@ export default class ProductPage extends React.Component {
 
   onchangeValueMin = (e) =>{
     this.setState({valueMin: e.target.value})
-    this.filterProducts(e.target.value, this.state.valueMax, this.state.inputSearch)
+    this.filterProducts(e.target.value, Infinity, this.state.inputSearch)
   }
 
   onchangeValueMax = (e) =>{
-    this.setState({valueMax: e.target.value})
-    this.filterProducts(this.state.valueMin, e.target.value, this.state.inputSearch)
+    if(e.target.value){
+      this.setState({
+        valueMax: e.target.value
+      })
+      this.filterProducts(this.state.valueMin, e.target.value, this.state.valueNomeProduto)
+    } else {
+      this.setState({
+        valueMax: Infinity
+      })
+      this.filterProducts(this.state.valueMin, Infinity, this.state.valueNomeProduto)
+    }
     
   }
 
@@ -108,10 +117,10 @@ export default class ProductPage extends React.Component {
   }
 
   filterProducts = (valueMin = this.state.valueMin, valueMax = this.state.valueMax, inputSearch = this.state.inputSearch) =>{
-    const productsListFiltered = this.state.products.filter((product) =>{
-      return product.price > valueMin
+    const productsListFiltered = this.state.productsFiltered.filter((product) =>{
+      return product.price >= valueMin || product.price >= valueMin && product.price <= valueMax
     }).filter((product) =>{
-      return product.price < valueMax
+      return product.price <= valueMax || product.price <= valueMax && product.price >= valueMin
     }).filter((product) =>{
       const nomeProduto = product.name.toLowerCase()
       return nomeProduto.includes(inputSearch.toLocaleLowerCase())
@@ -122,8 +131,6 @@ export default class ProductPage extends React.Component {
   }
 
   render() {
-    console.log(this.state.products)
-    console.log('valor inputs filter:', this.state.inputSearch)
     return (
       <ProductPageContainer>
         <ProductAside 

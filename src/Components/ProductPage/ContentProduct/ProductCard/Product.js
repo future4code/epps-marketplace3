@@ -11,7 +11,6 @@ export default class Product extends React.Component {
         <ProductCard
           produtos={this.props.produtos}
           onClickAddToCart={this.props.onClickAddToCart}
-         /*  filterProducts={this.props.filterProducts} */
           valueOrder={this.props.valueOrder}
         />
       </ProductContainer>

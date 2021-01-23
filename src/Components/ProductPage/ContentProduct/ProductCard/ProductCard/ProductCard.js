@@ -57,7 +57,7 @@ export default class ProductCard extends React.Component {
     const productsRender = novoArray.map((product) => {
       return (
         <ProductCardBox>
-          <img src={product.photos} />
+          <img src={product.photos} alt='imagem do produto'/>
           <h3>{product.name}</h3>
           <p>{product.description}</p>
           <PriceP>Valor: {product.price}</PriceP>
