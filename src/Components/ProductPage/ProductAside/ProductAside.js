@@ -80,7 +80,7 @@ export default class ProductAside extends React.Component {
               <option>Bijuterias</option>
             </SelectFiltro>
           </AsideBoxItem>
-          <button onClick={this.props.filterProducts}>Buscar</button>
+          {/* <button onClick={this.props.filterProducts}>Buscar</button> */}
         </AsideBox>
       </ProductAsideContainer>
     );
