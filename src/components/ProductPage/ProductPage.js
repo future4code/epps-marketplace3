@@ -27,9 +27,10 @@ export default class ProductPage extends React.Component {
     showCart: false,
     products: [],
     listCart: [],
+    productsFiltered: [],
     order: '',
     valueMin: 0,
-    valueMax: Infinity,
+    valueMax: 0,
     inputSearch: '',
   };
 
@@ -93,14 +94,12 @@ export default class ProductPage extends React.Component {
 
   onchangeValueMin = (e) =>{
     this.setState({valueMin: e.target.value})
-    this.filterProducts(e.target.value, Infinity, this.state.inputSearch)
+    this.filterProducts(e.target.value, this.state.valueMax, this.state.inputSearch)
   }
 
   onchangeValueMax = (e) =>{
     if(e.target.value){
-      this.setState({
-        valueMax: e.target.value
-      })
+      this.setState({valueMax: e.target.value})
       this.filterProducts(this.state.valueMin, e.target.value, this.state.valueNomeProduto)
     } else {
       this.setState({
@@ -118,9 +117,9 @@ export default class ProductPage extends React.Component {
 
   filterProducts = (valueMin = this.state.valueMin, valueMax = this.state.valueMax, inputSearch = this.state.inputSearch) =>{
     const productsListFiltered = this.state.productsFiltered.filter((product) =>{
-      return product.price >= valueMin || product.price >= valueMin && product.price <= valueMax
+      return Number(product.price) >= Number(valueMin) /* || product.price >= valueMin && product.price <= valueMax */
     }).filter((product) =>{
-      return product.price <= valueMax || product.price <= valueMax && product.price >= valueMin
+      return Number(product.price) <= Number(valueMax) /* || product.price <= valueMax && product.price >= valueMin */
     }).filter((product) =>{
       const nomeProduto = product.name.toLowerCase()
       return nomeProduto.includes(inputSearch.toLocaleLowerCase())
