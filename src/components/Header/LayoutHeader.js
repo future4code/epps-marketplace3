@@ -6,40 +6,47 @@ const BoxHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 15vh;
+  height: 10vh;
 `;
 
 const NavBar = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 15vh;
+  height: 10vh;
   width: 100vw;
   background-color: #f2970b;
 `;
-const Hiperlinks = styled.a`
+const HiperlinkHome = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   text-decoration: none;
-  color: black;
 `;
 const ImgLogoHeader = styled.img`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 15vh;
+  height: 10vh;
 `;
 const UlistasBtnHeader = styled.ul`
   list-style: none;
   display: flex;
   align-items: center;
+  justify-content: center;
+  align-content: center;
   font-family: "Roboto", sans-serif;
+  margin: 0vh 10vh;
+
 `;
 const ListaBtnHeader = styled.li`
   margin: 0vh 10vh;
   font-size: 3.2vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  alig
 `;
 const BotaoHeader = styled.button`
   padding: 1vh;
@@ -59,18 +66,15 @@ export class LayoutHeader extends React.Component {
       <BoxHeader>
         <NavBar>
           <div>
-            <Hiperlinks>
+            <HiperlinkHome>
               <ImgLogoHeader
                 src={LogoImg}
                 onClick={this.props.irParaHome}
                 alt="logo elo4"
               />
-            </Hiperlinks>
+            </HiperlinkHome>
           </div>
           <UlistasBtnHeader>
-            <ListaBtnHeader>
-              <Hiperlinks onClick={this}>Quem somos?</Hiperlinks>
-            </ListaBtnHeader>
             <ListaBtnHeader>
               <BotaoHeader onClick={this.props.irParaProdutos}>
                 Produtos
