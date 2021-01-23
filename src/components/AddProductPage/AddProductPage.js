@@ -7,6 +7,7 @@ import {
   Select,
   FormControl,
   MenuItem,
+  Container,
 } from "@material-ui/core/";
 import styled from "styled-components";
 
@@ -32,6 +33,17 @@ const ButtonDiv = styled.div`
   align-items: center;
   justify-content: flex-end;
   width: 80%;
+`;
+
+const ContainerProdutos = styled.div`
+  border: 1px dotted #f2a649;
+  min-width: 300px;
+  margin: 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
 `;
 
 class AddProductPage extends Component {
@@ -117,18 +129,18 @@ class AddProductPage extends Component {
   };
 
   deleteProduct = (id) => {
-    if (window.confirm("Quer mesmo deletar o anúncio do produto?")){
-    axios
-      .delete(
-        `https://us-central1-labenu-apis.cloudfunctions.net/eloFourOne/products/${id}`
-      )
-      .then((response) => {
-        alert("Anúncio do produto retirado.")
-        this.getProducts();
-      })
-      .catch((error) => {
-        alert("Produto não foi retirado, tente novamente.");
-      });
+    if (window.confirm("Quer mesmo deletar o anúncio do produto?")) {
+      axios
+        .delete(
+          `https://us-central1-labenu-apis.cloudfunctions.net/eloFourOne/products/${id}`
+        )
+        .then((response) => {
+          alert("Anúncio do produto retirado.");
+          this.getProducts();
+        })
+        .catch((error) => {
+          alert("Produto não foi retirado, tente novamente.");
+        });
     }
   };
 
@@ -266,17 +278,43 @@ class AddProductPage extends Component {
           </Button>
         </ButtonDiv>
 
-        <h1>Gerenciamento de produtos</h1>
+        <h1>Gerenciar produtos cadastrados:</h1>
         <hr></hr>
         {this.state.productList.map((product) => {
           return (
-            <div>
-              <p>Nome do produto: {product.name}</p>
-              <p>Descrição: {product.description}</p>
-              <p>Preço: R${product.price},00</p>
-              <p>Categoria: {product.category}</p>
-              <button onClick={()=> {this.deleteProduct(product.id)}}>Deletar anuncio do produto.</button>
-            </div>
+            <ContainerProdutos>
+              <p>
+                <strong>Nome do produto:</strong> {product.name}
+              </p>
+              <p>
+                <strong>Descrição:</strong>
+                {product.description}
+              </p>
+              <p>
+                <strong>Preço: </strong>R$
+                {product.price},00
+              </p>
+              <p>
+                <strong>Categoria:</strong>
+                {product.category}
+              </p>
+              <Button
+                onClick={() => {
+                  this.deleteProduct(product.id);
+                }}
+                style={{
+                  borderRadius: 20,
+                  backgroundColor: "#f2a649",
+                  color: "white",
+                  border: "none",
+                  outline: "none",
+                  marginBottom: "10px",
+                }}
+                variant="contained"
+              >
+                Deletar Produto
+              </Button>
+            </ContainerProdutos>
           );
         })}
       </DivPrincipal>
