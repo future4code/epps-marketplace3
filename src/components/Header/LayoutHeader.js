@@ -46,17 +46,21 @@ const ListaBtnHeader = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
-  alig
 `;
+
 const BotaoHeader = styled.button`
   padding: 1vh;
   height: 6vh;
   width: 25vh;
-  border-radius: 20vh;
+  border-radius: 10px;
   border-width: 0.2vh;
   background: #f2f2f2;
   cursor: pointer;
   font-size: 2.5vh;
+
+  &:focus{
+    outline: none;
+  }
 `;
 
 export class LayoutHeader extends React.Component {
