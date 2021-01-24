@@ -7,48 +7,48 @@ import ProductPage from "./ProductPage/ProductPage";
 
 export class AppContainer extends Component {
   state = {
-    paginaAtual: "home",
+    currentPage: "home",
   };
 
-  irParaHome = () => {
-    this.setState({ paginaAtual: "home" });
+  goToHome = () => {
+    this.setState({ currentPage: "home" });
   };
 
-  irParaFormulario = () => {
-    this.setState({ paginaAtual: "formulario" });
+  goToForm = () => {
+    this.setState({ currentPage: "form" });
   };
 
-  irParaProdutos = () => {
-    this.setState({ paginaAtual: "produtos" });
+  goToProducts = () => {
+    this.setState({ currentPage: "products" });
   };
 
   render() {
-    let renderizarPagina = "";
-    switch (this.state.paginaAtual) {
+    let renderPage = "";
+    switch (this.state.currentPage) {
       case "home":
-        renderizarPagina = <Home />;
+        renderPage = <Home />;
         break;
-      case "produtos":
-        renderizarPagina = <ProductPage />;
+      case "products":
+        renderPage = <ProductPage />;
         break;
 
-      case "formulario":
-        renderizarPagina = <AddProductPage />;
+      case "form":
+        renderPage = <AddProductPage />;
         break;
 
       default:
-        renderizarPagina = <Home />;
+        renderPage = <Home />;
     }
 
     return (
       <div>
         <LayoutHeader
-          paginaAtual={this.state.paginaAtual}
-          irParaHome={this.irParaHome}
-          irParaFormulario={this.irParaFormulario}
-          irParaProdutos={this.irParaProdutos}
+          currentPage={this.state.currentPage}
+          goToHome={this.goToHome}
+          goToForm={this.goToForm}
+          goToProducts={this.goToProducts}
         />
-        {renderizarPagina}
+        {renderPage}
         <Footer />
       </div>
     );

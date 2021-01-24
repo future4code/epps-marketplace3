@@ -9,7 +9,7 @@ export default class Product extends React.Component {
     return (
       <ProductContainer>
         <ProductCard
-          produtos={this.props.produtos}
+          products={this.props.products}
           onClickAddToCart={this.props.onClickAddToCart}
           valueOrder={this.props.valueOrder}
         />

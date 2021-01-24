@@ -22,11 +22,11 @@ const BoxFooter = styled.div`
   font-size: 1.2em;
 `;
 
-const Paragrafo = styled.p`
+const Paragraph = styled.p`
   display: flex;
   flex-direction: block;
   align-items: center;
-  margin:0 20px 0 0;
+  margin: 0 20px 0 0;
 `;
 
 const LinksMidia = styled.a`
@@ -36,8 +36,8 @@ const LinksMidia = styled.a`
   flex-direction: block;
   padding: 5px;
 
-  &:hover{
-    color: #f2970b
+  &:hover {
+    color: #f2970b;
   }
 `;
 const DivIcons = styled.div`
@@ -46,7 +46,7 @@ const DivIcons = styled.div`
   justify-content: space-between;
 `;
 
-const DivParagrafos = styled.div`
+const DivParagraphs = styled.div`
   display: flex;
 `;
 
@@ -56,21 +56,21 @@ class Footer extends React.Component {
       <FooterContainer>
         <BoxFooter>
           <DivIcons>
-            <LinksMidia href="https://facebook.com" target='_blank'>
+            <LinksMidia href="https://facebook.com" target="_blank">
               <FacebookIcon />{" "}
             </LinksMidia>
-            <LinksMidia href="https://instagram.com" target='_blank'>
+            <LinksMidia href="https://instagram.com" target="_blank">
               <InstagramIcon />
             </LinksMidia>
-            <LinksMidia href="https://twitter.com/" target='_blank'>
+            <LinksMidia href="https://twitter.com/" target="_blank">
               <TwitterIcon />
             </LinksMidia>
           </DivIcons>
-          <Paragrafo>|</Paragrafo>
-          <DivParagrafos>
-            <Paragrafo>E-mail: contato@elo4.com.br</Paragrafo>
-            <Paragrafo>Telefone: +55 (011) 3366-3366</Paragrafo>
-          </DivParagrafos>
+          <Paragraph>|</Paragraph>
+          <DivParagraphs>
+            <Paragraph>E-mail: contato@elo4.com.br</Paragraph>
+            <Paragraph>Telefone: +55 (011) 3366-3366</Paragraph>
+          </DivParagraphs>
         </BoxFooter>
       </FooterContainer>
     );
