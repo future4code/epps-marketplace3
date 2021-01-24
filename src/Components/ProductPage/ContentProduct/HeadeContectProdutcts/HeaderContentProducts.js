@@ -19,13 +19,12 @@ export default class HeaderContentProducts extends React.Component {
         </TitleProductsContainer>
 
         <div>
-          <select onChange={this.props.filtroProducts}>
-            <option>Ordenar</option>
-            <option value='Sem ordem'>Sem ordem</option>
-            <option value='nomeAZ'>Nome A-Z</option>
-            <option value='nomeZA'>Nome Z-A</option>
-            <option value='Crescente'>Crescente</option>
-            <option value='Decrescente'>Decrescente</option>
+          <select onChange={this.props.filterProducts}>
+            <option value="Sem ordem">Ordernar</option>
+            <option value="nomeAZ">Nome A-Z</option>
+            <option value="nomeZA">Nome Z-A</option>
+            <option value="Crescente">Crescente</option>
+            <option value="Decrescente">Decrescente</option>
           </select>
         </div>
       </HeaderProductContainer>

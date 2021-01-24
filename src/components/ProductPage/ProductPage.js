@@ -14,7 +14,7 @@ const ProductPageContainer = styled.div`
 const BtnCartContainer = styled.div`
   position: fixed;
   right: 40px;
-  bottom: 75px;
+  bottom: 100px;
 `;
 
 const ImgCart = styled.img`
@@ -28,10 +28,10 @@ export default class ProductPage extends React.Component {
     products: [],
     listCart: [],
     productsFiltered: [],
-    order: '',
+    order: "",
     valueMin: 0,
     valueMax: 0,
-    inputSearch: '',
+    inputSearch: "",
   };
 
   changeCart = () => {
@@ -43,17 +43,17 @@ export default class ProductPage extends React.Component {
   }
 
   getAllProducts = () => {
-    const request = axios
+    axios
       .get(
         "https://us-central1-labenu-apis.cloudfunctions.net/eloFourOne/products"
       )
       .then((response) => {
-        console.log("Get produtos", response.data.products);
-        this.setState({ products: response.data.products, productsFiltered: response.data.products });
+        this.setState({
+          products: response.data.products,
+          productsFiltered: response.data.products,
+        });
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   };
 
   addCart = (addProduct) => {
@@ -70,86 +70,112 @@ export default class ProductPage extends React.Component {
     this.setState({ listCart: newListCart });
   };
 
-  deleteProductCart = (id) =>{
-   let productDelete = [...this.state.listCart]
-   let productCart = this.state.listCart.findIndex((product) => product.id === id)
+  deleteProductCart = (id) => {
+    let productDelete = [...this.state.listCart];
+    let productCart = this.state.listCart.findIndex(
+      (product) => product.id === id
+    );
 
-   productDelete.splice(productCart, 1)
-   this.setState({listCart: productDelete})
-  }
+    productDelete.splice(productCart, 1);
+    this.setState({ listCart: productDelete });
+  };
 
-  onchangeProducts = (e) =>{
-    if(e.target.value === 'Crescente'){
-      this.setState({order: e.target.value})
-    } else if(e.target.value === 'Decrescente'){
-      this.setState({order: e.target.value})
-    } else if(e.target.value === 'nomeAZ'){
-      this.setState({order: e.target.value})
-    } else if(e.target.value === 'nomeZA'){
-      this.setState({order: e.target.value})
-    } else if(e.target.value === 'Sem ordem'){
-      this.setState({order: e.target.value})
-    } 
-  } 
+  onChangeProducts = (e) => {
+    if (e.target.value === "Crescente") {
+      this.setState({ order: e.target.value });
+    } else if (e.target.value === "Decrescente") {
+      this.setState({ order: e.target.value });
+    } else if (e.target.value === "nomeAZ") {
+      this.setState({ order: e.target.value });
+    } else if (e.target.value === "nomeZA") {
+      this.setState({ order: e.target.value });
+    } else if (e.target.value === "Sem ordem") {
+      this.setState({ order: e.target.value });
+    }
+  };
 
-  onchangeValueMin = (e) =>{
-    this.setState({valueMin: e.target.value})
-    this.filterProducts(e.target.value, this.state.valueMax, this.state.inputSearch)
-  }
+  onChangeValueMin = (e) => {
+    this.setState({ valueMin: e.target.value });
+    this.filterProducts(
+      e.target.value,
+      this.state.valueMax,
+      this.state.inputSearch
+    );
+  };
 
-  onchangeValueMax = (e) =>{
-    if(e.target.value){
-      this.setState({valueMax: e.target.value})
-      this.filterProducts(this.state.valueMin, e.target.value, this.state.valueNomeProduto)
+  onChangeValueMax = (e) => {
+    if (e.target.value) {
+      this.setState({ valueMax: e.target.value });
+      this.filterProducts(
+        this.state.valueMin,
+        e.target.value,
+        this.state.valueNomeProduto
+      );
     } else {
       this.setState({
-        valueMax: Infinity
-      })
-      this.filterProducts(this.state.valueMin, Infinity, this.state.valueNomeProduto)
+        valueMax: Infinity,
+      });
+      this.filterProducts(
+        this.state.valueMin,
+        Infinity,
+        this.state.valueNomeProduto
+      );
     }
-    
-  }
+  };
 
-  onchangeInputSearch = (e) =>{
-    this.setState({inputSearch: e.target.value})
-    this.filterProducts(this.state.valueMin, this.state.valueMax, e.target.value)
-  }
+  onChangeInputSearch = (e) => {
+    this.setState({ inputSearch: e.target.value });
+    this.filterProducts(
+      this.state.valueMin,
+      this.state.valueMax,
+      e.target.value
+    );
+  };
 
-  filterProducts = (valueMin = this.state.valueMin, valueMax = this.state.valueMax, inputSearch = this.state.inputSearch) =>{
-    const productsListFiltered = this.state.productsFiltered.filter((product) =>{
-      return Number(product.price) >= Number(valueMin) /* || product.price >= valueMin && product.price <= valueMax */
-    }).filter((product) =>{
-      return Number(product.price) <= Number(valueMax) /* || product.price <= valueMax && product.price >= valueMin */
-    }).filter((product) =>{
-      const nomeProduto = product.name.toLowerCase()
-      return nomeProduto.includes(inputSearch.toLocaleLowerCase())
-    })
+  filterProducts = (
+    valueMin = this.state.valueMin,
+    valueMax = this.state.valueMax,
+    inputSearch = this.state.inputSearch
+  ) => {
+    const productsListFiltered = this.state.productsFiltered
+      .filter((product) => {
+        return Number(product.price) >= Number(valueMin);
+      })
+      .filter((product) => {
+        return Number(product.price) <= Number(valueMax);
+      })
+      .filter((product) => {
+        const productName = product.name.toLowerCase();
+        return productName.includes(inputSearch.toLocaleLowerCase());
+      });
 
-    this.setState({products: productsListFiltered})
-    return productsListFiltered
-  }
+    this.setState({ products: productsListFiltered });
+    return productsListFiltered;
+  };
 
   render() {
     return (
       <ProductPageContainer>
-        <ProductAside 
-          onchangeInputSearch={this.onchangeInputSearch}
-          onchangeValueMax={this.onchangeValueMax}
-          onchangeValueMin={this.onchangeValueMin}
+        <ProductAside
+          onChangeInputSearch={this.onChangeInputSearch}
+          onChangeValueMax={this.onChangeValueMax}
+          onChangeValueMin={this.onChangeValueMin}
           filterProducts={this.filterProducts}
           productList={this.state.products}
         />
         <ContentProduct
-          produtos={this.state.products}
+          products={this.state.products}
           onClickAddToCart={this.addCart}
           listCart={this.state.listCart}
-          filtroProducts={this.onchangeProducts}
+          filterProducts={this.onChangeProducts}
           valueOrder={this.state.order}
         />
-        {this.state.showCart && <Cart 
-                                  listCart={this.state.listCart} 
-                                  deleteProductCart={this.deleteProductCart}
-                                />}
+        {this.state.showCart && (
+          <Cart
+            listCart={this.state.listCart}
+            deleteProductCart={this.deleteProductCart}
+          />
+        )}
         <BtnCartContainer>
           <ImgCart
             src={ShoppingCart}

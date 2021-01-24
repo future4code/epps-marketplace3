@@ -17,6 +17,11 @@ const ProductCardBox = styled.div`
   }
 `;
 
+const Img = styled.img`
+  width: 200px;
+  height: 300px;
+`;
+
 const TagP = styled.p`
   margin: 0;
 `;
@@ -32,55 +37,56 @@ const BtnAddCart = styled.button`
     outline: none;
   }
 
-   &:hover {
+  &:hover {
     transform: scale(1.1);
   }
-`
+`;
 
 export default class ProductCard extends React.Component {
   render() {
+    const newArray = [...this.props.products];
 
-    const novoArray = [...this.props.produtos]
-
-    if(this.props.valueOrder === 'Crescente'){
-      novoArray.sort(function (a, b){
-        return a.price - b.price
-      })
-    } else if(this.props.valueOrder === 'Decrescente'){
-      novoArray.sort(function (a, b){
-        return b.price - a.price
-      })
-    } else if(this.props.valueOrder === 'nomeAZ'){
-      novoArray.sort(function(a, b){
-        if(a.name < b.name){
+    if (this.props.valueOrder === "Crescente") {
+      newArray.sort(function (a, b) {
+        return a.price - b.price;
+      });
+    } else if (this.props.valueOrder === "Decrescente") {
+      newArray.sort(function (a, b) {
+        return b.price - a.price;
+      });
+    } else if (this.props.valueOrder === "nomeAZ") {
+      newArray.sort(function (a, b) {
+        if (a.name < b.name) {
           return 1;
-        } else if(a.name > b.name){
-          return -1
+        } else if (a.name > b.name) {
+          return -1;
         } else {
-          return 0
+          return 0;
         }
-       })
-    } else if(this.props.valueOrder === 'nomeZA'){
-      novoArray.sort(function(a, b){
-        if(a.name > b.name){
+      });
+    } else if (this.props.valueOrder === "nomeZA") {
+      newArray.sort(function (a, b) {
+        if (a.name > b.name) {
           return 1;
-        } else if(a.name < b.name){
-          return -1
+        } else if (a.name < b.name) {
+          return -1;
         } else {
-          return 0
+          return 0;
         }
-       })
-    } 
+      });
+    }
 
-    const productsRender = novoArray.map((product) => {
+    const productsRender = newArray.map((product) => {
       return (
         <ProductCardBox>
-          <img src={product.photos} alt='imagem do produto'/>
+          <Img src={product.photos} alt="imagem do produto" />
           <h4>{product.name}</h4>
           <TagP>{product.description}</TagP>
-          <TagP>Valor: R$ {Number(product.price).toFixed(2).replace('.', ',')}</TagP>
+          <TagP>
+            Valor: R$ {Number(product.price).toFixed(2).replace(".", ",")}
+          </TagP>
           <BtnAddCart onClick={() => this.props.onClickAddToCart(product)}>
-            Adicionar Produtos
+            Adicionar ao Carrinho
           </BtnAddCart>
         </ProductCardBox>
       );

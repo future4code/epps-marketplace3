@@ -29,7 +29,7 @@ const AsideBoxItem = styled.div`
   text-align: initial;
 `;
 
-const InputFiltro = styled.input`
+const InputFilter = styled.input`
   border-radius: 5px;
   border: none;
 
@@ -38,7 +38,7 @@ const InputFiltro = styled.input`
   }
 `;
 
-const SelectFiltro = styled.select`
+const SelectFilter = styled.select`
   margin-top: 20px;
   text-align-last: center;
 `;
@@ -51,38 +51,32 @@ export default class ProductAside extends React.Component {
           <TitleAside>Filtro</TitleAside>
           <AsideBoxItem>
             <label>Valor Máximo:</label>
-            <InputFiltro 
-              onChange={this.props.onchangeValueMax}
-              type='number'
-            />
+            <InputFilter onChange={this.props.onChangeValueMax} type="number" />
           </AsideBoxItem>
 
           <AsideBoxItem>
             <label>Valor Mínimo:</label>
-            <InputFiltro 
-              onChange={this.props.onchangeValueMin}
-              type='number'
-            />
+            <InputFilter onChange={this.props.onChangeValueMin} type="number" />
           </AsideBoxItem>
 
           <AsideBoxItem>
             <label>Nome do Produto</label>
-            <InputFiltro 
-              onChange={this.props.onchangeInputSearch}
-            />
+            <InputFilter onChange={this.props.onChangeInputSearch} />
           </AsideBoxItem>
 
           <AsideBoxItem>
-            <SelectFiltro>
-              <option disabled selected> Categoria</option>
-              <option value={'acessorios'}>Acessórios</option>
-              <option value={'festa'}>Aniversário e festas</option>
-              <option value={'bijuterias'}>Bijuterias</option>
-              <option value={'jogos'}>Jogos e Brinquedos</option>
-              <option value={'roupas'}>Roupas</option>
-            </SelectFiltro>
+            <SelectFilter>
+              <option disabled selected>
+                {" "}
+                Categoria
+              </option>
+              <option value={"acessorios"}>Acessórios</option>
+              <option value={"festa"}>Aniversário e festas</option>
+              <option value={"bijuterias"}>Bijuterias</option>
+              <option value={"jogos"}>Jogos e Brinquedos</option>
+              <option value={"roupas"}>Roupas</option>
+            </SelectFilter>
           </AsideBoxItem>
-          {/* <button onClick={this.props.filterProducts}>Buscar</button> */}
         </AsideBox>
       </ProductAsideContainer>
     );

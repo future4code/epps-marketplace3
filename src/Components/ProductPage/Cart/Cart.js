@@ -26,13 +26,13 @@ const BoxProductNameAndDelete = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 15px; 
+  margin: 0 15px;
 `;
 
 const TagPnameProduct = styled.p`
   margin: 0;
   font-weight: 600;
-`
+`;
 
 const TagP = styled.p`
   margin: 0;
@@ -92,9 +92,9 @@ class Cart extends React.Component {
     return value;
   };
 
-  checkout = () =>{
-    alert('Compra concluída com sucesso! Volte sempre!!!')
-  }
+  checkout = () => {
+    alert("Compra concluída com sucesso! Volte sempre!!!");
+  };
 
   render() {
     const productsCart = this.props.listCart;
@@ -109,7 +109,12 @@ class Cart extends React.Component {
             </BtnDelete>
           </BoxProductNameAndDelete>
           <TagP>Quantidade: {product.quantidade}</TagP>
-          <TagP>Valor do produto: R${Number(product.price * product.quantidade).toFixed(2).replace('.',',')}</TagP>
+          <TagP>
+            Valor do produto: R$
+            {Number(product.price * product.quantidade)
+              .toFixed(2)
+              .replace(".", ",")}
+          </TagP>
         </BoxItemCart>
       );
     });
@@ -121,7 +126,9 @@ class Cart extends React.Component {
           <BoxDetailsCart>
             {infosProductsCart}
             <div>
-              <p>Total: R$ {Number(totalValue).toFixed(2).replace('.',',')} </p>
+              <p>
+                Total: R$ {Number(totalValue).toFixed(2).replace(".", ",")}{" "}
+              </p>
             </div>
           </BoxDetailsCart>
 

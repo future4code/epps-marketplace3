@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Logo from "../../imgs/elo4-logo.png";
 
-const QuemSomosContainer = styled.div`
+const AboutUsContainer = styled.div`
   display: flex;
   padding: 2em;
   background-color: #f2f2f2;
@@ -10,22 +10,26 @@ const QuemSomosContainer = styled.div`
   color: #311355;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  @media (min-device-width: 320px) and (max-device-width: 420px) {
+    flex-direction: column;
+  }
 `;
 
-const Imagem = styled.img`
+const Image = styled.img`
   height: 80%;
   width: auto;
+  @media (min-device-width: 320px) and (max-device-width: 420px) {
+    width: 80%;
+  }
 `;
 
-const H1 = styled.h1``;
-
-const Texto = styled.p`
+const TextAboutUs = styled.p`
   font-weight: bold;
   text-align: justify;
   margin-top: 5%;
 `;
 
-const Diferenciais = styled.div`
+const Differentials = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 15%;
@@ -36,27 +40,27 @@ const Diferenciais = styled.div`
 class QuemSomos extends React.Component {
   render() {
     return (
-      <QuemSomosContainer>
+      <AboutUsContainer>
         <div>
-          <Imagem src={Logo} />
+          <Image src={Logo} />
         </div>
         <div>
-          <H1>Quem somos?</H1>
-          <Texto>
+          <h1>Quem somos?</h1>
+          <TextAboutUs>
             {" "}
             A Elo4 é uma startup voltada à conexão de artesãos e artesãs para a
             venda de produtos personalizados. Na Elo4, os clientes podem
             encontrar uma variedade de produtos, como artigos para festas,
             objetos de decoração, bijuterias, produtos religiosos, enxovais e
             acessórios eco-friendly.
-          </Texto>
-          <Diferenciais>
+          </TextAboutUs>
+          <Differentials>
             <span>Atendimento 24/7</span>
             <span>Entrega Rápida</span>
             <span>Pós-venda</span>
-          </Diferenciais>
+          </Differentials>
         </div>
-      </QuemSomosContainer>
+      </AboutUsContainer>
     );
   }
 }

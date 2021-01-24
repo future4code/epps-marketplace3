@@ -30,7 +30,7 @@ const ImgLogoHeader = styled.img`
   align-items: center;
   height: 10vh;
 `;
-const UlistasBtnHeader = styled.ul`
+const UlistsBtnHeader = styled.ul`
   list-style: none;
   display: flex;
   align-items: center;
@@ -38,9 +38,8 @@ const UlistasBtnHeader = styled.ul`
   align-content: center;
   font-family: "Roboto", sans-serif;
   margin: 0vh 10vh;
-
 `;
-const ListaBtnHeader = styled.li`
+const ListBtnHeader = styled.li`
   margin: 0vh 10vh;
   font-size: 3.2vh;
   display: flex;
@@ -48,7 +47,7 @@ const ListaBtnHeader = styled.li`
   justify-content: center;
 `;
 
-const BotaoHeader = styled.button`
+const ButtonHeader = styled.button`
   padding: 1vh;
   height: 6vh;
   width: 25vh;
@@ -58,13 +57,12 @@ const BotaoHeader = styled.button`
   cursor: pointer;
   font-size: 2.5vh;
 
-  &:focus{
+  &:focus {
     outline: none;
   }
 `;
 
 export class LayoutHeader extends React.Component {
-
   render() {
     return (
       <BoxHeader>
@@ -73,23 +71,23 @@ export class LayoutHeader extends React.Component {
             <HiperlinkHome>
               <ImgLogoHeader
                 src={LogoImg}
-                onClick={this.props.irParaHome}
+                onClick={this.props.goToHome}
                 alt="logo elo4"
               />
             </HiperlinkHome>
           </div>
-          <UlistasBtnHeader>
-            <ListaBtnHeader>
-              <BotaoHeader onClick={this.props.irParaProdutos}>
+          <UlistsBtnHeader>
+            <ListBtnHeader>
+              <ButtonHeader onClick={this.props.goToProducts}>
                 Produtos
-              </BotaoHeader>
-            </ListaBtnHeader>
-            <ListaBtnHeader>
-              <BotaoHeader onClick={this.props.irParaFormulario}>
+              </ButtonHeader>
+            </ListBtnHeader>
+            <ListBtnHeader>
+              <ButtonHeader onClick={this.props.goToForm}>
                 Anunciar Produtos
-              </BotaoHeader>
-            </ListaBtnHeader>
-          </UlistasBtnHeader>
+              </ButtonHeader>
+            </ListBtnHeader>
+          </UlistsBtnHeader>
         </NavBar>
       </BoxHeader>
     );

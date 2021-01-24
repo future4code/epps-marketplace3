@@ -1,5 +1,5 @@
 import React from "react";
-import QuemSomos from "./QuemSomos";
+import AboutUs from "./AboutUs"
 import Carrossel from "./Carrossel";
 
 class Home extends React.Component {
@@ -7,7 +7,7 @@ class Home extends React.Component {
     return (
       <div>
         <Carrossel />
-        <QuemSomos />
+        <AboutUs />
       </div>
     );
   }

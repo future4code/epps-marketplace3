@@ -7,11 +7,10 @@ import {
   Select,
   FormControl,
   MenuItem,
-  Container,
 } from "@material-ui/core/";
 import styled from "styled-components";
 
-const DivPrincipal = styled.div`
+const DivFormSell = styled.div`
   width: 80%;
   display: flex;
   flex-direction: column;
@@ -35,7 +34,7 @@ const ButtonDiv = styled.div`
   width: 80%;
 `;
 
-const ContainerProdutos = styled.div`
+const ContainerProducts = styled.div`
   border: 1px dotted #f2a649;
   min-width: 300px;
   margin: 10px;
@@ -48,13 +47,13 @@ const ContainerProdutos = styled.div`
 
 class AddProductPage extends Component {
   state = {
-    inputNome: "",
-    inputDescricao: "",
-    inputPreco: 0,
-    formaDePagamento: "",
-    selectCategoria: "",
-    inputImagem: [],
-    selectParcelas: 1,
+    inputName: "",
+    inputDescription: "",
+    inputPrice: 0,
+    paymentMethod: "",
+    selectCategory: "",
+    inputImage: [],
+    selectinstallments: 1,
     productList: [],
   };
 
@@ -75,15 +74,15 @@ class AddProductPage extends Component {
       });
   };
 
-  enviarProduto = () => {
+  postProduct = () => {
     const body = {
-      name: this.state.inputNome,
-      description: this.state.inputDescricao,
-      price: this.state.inputPreco,
-      paymentMethod: this.state.formaDePagamento,
-      category: this.state.selectCategoria,
-      photos: [this.state.inputImagem],
-      installments: this.state.selectParcelas,
+      name: this.state.inputName,
+      description: this.state.inputDescription,
+      price: this.state.inputPrice,
+      paymentMethod: this.state.paymentMethod,
+      category: this.state.selectCategory,
+      photos: [this.state.inputImage],
+      installments: this.state.selectinstallments,
     };
 
     axios
@@ -99,33 +98,32 @@ class AddProductPage extends Component {
       });
   };
 
-  onChangeInputNome = (event) => {
-    this.setState({ inputNome: event.target.value });
+  onChangeInputName = (event) => {
+    this.setState({ inputName: event.target.value });
   };
 
-  onChangeInputDescricao = (event) => {
-    this.setState({ inputDescricao: event.target.value });
+  onChangeInputDescription = (event) => {
+    this.setState({ inputDescription: event.target.value });
   };
 
-  onChangeInputPreco = (event) => {
-    this.setState({ inputPreco: event.target.value });
+  onChangeInputPrice = (event) => {
+    this.setState({ inputPrice: event.target.value });
   };
 
-  onChangeFormaDePagamento = (event) => {
-    this.setState({ formaDePagamento: event.target.value });
+  onChangePaymentMethod = (event) => {
+    this.setState({ paymentMethod: event.target.value });
   };
 
-  onChangeSelectCategoria = (event) => {
-    this.setState({ selectCategoria: event.target.value });
-    console.log("Categoria:", event.target.value);
+  onChangeSelectCategory = (event) => {
+    this.setState({ selectCategory: event.target.value });
   };
 
-  onChangeInputImagem = (event) => {
-    this.setState({ inputImagem: event.target.value });
+  onChangeInputImage = (event) => {
+    this.setState({ inputImage: event.target.value });
   };
 
-  onChangeSelectParcelas = (event) => {
-    this.setState({ selectParcelas: event.target.value });
+  onChangeSelectinstallments = (event) => {
+    this.setState({ selectinstallments: event.target.value });
   };
 
   deleteProduct = (id) => {
@@ -146,15 +144,15 @@ class AddProductPage extends Component {
 
   render() {
     return (
-      <DivPrincipal>
+      <DivFormSell>
         <h1>Área do Vendedor:</h1>
         <InputDiv tamanho="80%">
           <Input
             tamanho="100%"
             label="Nome do Produto"
             variant="filled"
-            value={this.state.inputNome}
-            onChange={this.onChangeInputNome}
+            value={this.state.InputName}
+            onChange={this.onChangeInputName}
           />
         </InputDiv>
 
@@ -164,8 +162,8 @@ class AddProductPage extends Component {
             label="URL da Imagem"
             variant="filled"
             placeholder="Coloque apenas uma foto do produto."
-            value={this.state.inputImagem}
-            onChange={this.onChangeInputImagem}
+            value={this.state.InputImage}
+            onChange={this.onChangeInputImage}
           />
         </InputDiv>
 
@@ -174,8 +172,8 @@ class AddProductPage extends Component {
             tamanho="100%"
             label="Descriçao"
             variant="filled"
-            value={this.state.inputDescricao}
-            onChange={this.onChangeInputDescricao}
+            value={this.state.InputDescription}
+            onChange={this.onChangeInputDescription}
           />
         </InputDiv>
         <InputDiv tamanho="80%">
@@ -185,8 +183,8 @@ class AddProductPage extends Component {
               tamanho="100%"
               label="Preço"
               variant="filled"
-              value={this.state.inputPreco}
-              onChange={this.onChangeInputPreco}
+              value={this.state.InputPrice}
+              onChange={this.onChangeInputPrice}
             />
           </InputDiv>
           <FormControl
@@ -199,8 +197,8 @@ class AddProductPage extends Component {
             <InputLabel>Categoria</InputLabel>
             <Select
               label="Categoria"
-              value={this.state.selectCategoria}
-              onChange={this.onChangeSelectCategoria}
+              value={this.state.SelectCategory}
+              onChange={this.onChangeSelectCategory}
             >
               <MenuItem value="">
                 <em>Nenhum</em>
@@ -222,15 +220,15 @@ class AddProductPage extends Component {
             <InputLabel>Forma de Pagamento</InputLabel>
             <Select
               label="Forma de Pagamento"
-              value={this.state.formaDePagamento}
-              onChange={this.onChangeFormaDePagamento}
+              value={this.state.paymentMethod}
+              onChange={this.onChangePaymentMethod}
             >
               <MenuItem value="">
                 <em>Nenhum</em>
               </MenuItem>
               <MenuItem value={"boleto"}>Boleto</MenuItem>
               <MenuItem value={"cartãocredito"}>Cartão de Crédito</MenuItem>
-              <MenuItem value={"cartãodedito"}>Cartão de Dédito</MenuItem>
+              <MenuItem value={"cartãodedito"}>Cartão de Débito</MenuItem>
               <MenuItem value={"bitcoin"}>Bitcoin</MenuItem>
               <MenuItem value={"pix"}>Pix</MenuItem>
             </Select>
@@ -246,8 +244,8 @@ class AddProductPage extends Component {
             <InputLabel>Parcelas</InputLabel>
             <Select
               label="Parcelas"
-              value={this.state.selectParcelas}
-              onChange={this.onChangeSelectParcelas}
+              value={this.state.Selectinstallments}
+              onChange={this.onChangeSelectinstallments}
             >
               <MenuItem value="">
                 <em>Nenhum</em>
@@ -264,7 +262,7 @@ class AddProductPage extends Component {
 
         <ButtonDiv>
           <Button
-            onClick={this.enviarProduto}
+            onClick={this.postProduct}
             style={{
               borderRadius: 20,
               backgroundColor: "#f2a649",
@@ -282,7 +280,7 @@ class AddProductPage extends Component {
         <hr></hr>
         {this.state.productList.map((product) => {
           return (
-            <ContainerProdutos>
+            <ContainerProducts>
               <p>
                 <strong>Nome do produto:</strong> {product.name}
               </p>
@@ -314,10 +312,10 @@ class AddProductPage extends Component {
               >
                 Deletar Produto
               </Button>
-            </ContainerProdutos>
+            </ContainerProducts>
           );
         })}
-      </DivPrincipal>
+      </DivFormSell>
     );
   }
 }
