@@ -32,6 +32,7 @@ export default class ProductPage extends React.Component {
     valueMin: 0,
     valueMax: 0,
     inputSearch: "",
+    categorySelect: '',
   };
 
   changeCart = () => {
@@ -153,7 +154,56 @@ export default class ProductPage extends React.Component {
     return productsListFiltered;
   };
 
+  onChangeCategorySelect = (e) => {
+    if (e.target.value === "acessorios") {
+      this.setState({ categorySelect: e.target.value }, () => 
+      this.filterSelect(this.state.categorySelect));
+      
+    } else if (e.target.value === "festa") {
+      this.setState({ categorySelect: e.target.value }, () => 
+      this.filterSelect(this.state.categorySelect));
+
+    } else if (e.target.value === "bijuterias") {
+      this.setState({ categorySelect: e.target.value }, () => 
+      this.filterSelect(this.state.categorySelect));
+
+    } else if (e.target.value === "jogos") {
+      this.setState({ categorySelect: e.target.value }, () => 
+      this.filterSelect(this.state.categorySelect));
+
+    } else if (e.target.value === "roupas") {
+      this.setState({ categorySelect: e.target.value }, () => 
+      this.filterSelect(this.state.categorySelect));
+
+    } 
+  };
+
+  filterSelect = (category) =>{
+    if(category !== ''){
+      const productsFilteredByCategory = this.state.productsFiltered.filter((product) =>{
+        return product.category === category
+      })
+      .filter((product) =>{
+        return product.category === category
+      }) 
+      .filter((product) =>{
+        return product.category === category
+      })
+      .filter((product) =>{
+        return product.category === category
+      })
+      .filter((product) =>{
+        return product.category === category
+      })
+
+
+      this.setState({products: productsFilteredByCategory})
+      return productsFilteredByCategory
+    } 
+  }    
+
   render() {
+    console.log(this.state.categorySelect)
     return (
       <ProductPageContainer>
         <ProductAside
@@ -162,6 +212,8 @@ export default class ProductPage extends React.Component {
           onChangeValueMin={this.onChangeValueMin}
           filterProducts={this.filterProducts}
           productList={this.state.products}
+          filterSelect={this.filterSelect}
+          onChangeCategorySelect={this.onChangeCategorySelect}
         />
         <ContentProduct
           products={this.state.products}
