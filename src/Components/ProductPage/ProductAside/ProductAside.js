@@ -65,8 +65,8 @@ export default class ProductAside extends React.Component {
           </AsideBoxItem>
 
           <AsideBoxItem>
-            <SelectFilter>
-              <option disabled selected>
+            <SelectFilter onChange={this.props.onChangeCategorySelect}>
+              <option selected disabled value=''>
                 {" "}
                 Categoria
               </option>
