@@ -14,7 +14,7 @@ const ProductPageContainer = styled.div`
 const BtnCartContainer = styled.div`
   position: fixed;
   right: 40px;
-  bottom: 40px;
+  bottom: 75px;
 `;
 
 const ImgCart = styled.img`

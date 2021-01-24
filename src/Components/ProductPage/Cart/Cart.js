@@ -7,10 +7,15 @@ const ProductCartContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 500px;
+  width: 250px;
+  margin: 20px 10px;
+  border-radius: 10px;
 `;
 const BoxCart = styled.div`
-  margin: 40px;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 `;
 
 const BoxItemCart = styled.div`
@@ -21,7 +26,13 @@ const BoxProductNameAndDelete = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 0 15px; 
 `;
+
+const TagPnameProduct = styled.p`
+  margin: 0;
+  font-weight: 600;
+`
 
 const TagP = styled.p`
   margin: 0;
@@ -65,7 +76,11 @@ const BoxBtnCheckout = styled.div`
 const BtnCheckout = styled.button`
   border: none;
   border-radius: 5px;
-  background-color: #f1f1f1;
+  background-color: white;
+
+  &:hover {
+    background-color: #f1f1f1;
+  }
 `;
 
 class Cart extends React.Component {
@@ -77,6 +92,10 @@ class Cart extends React.Component {
     return value;
   };
 
+  checkout = () =>{
+    alert('Compra concluída com sucesso! Volte sempre!!!')
+  }
+
   render() {
     const productsCart = this.props.listCart;
     const totalValue = this.valueUpdate(this.props.listCart);
@@ -84,13 +103,13 @@ class Cart extends React.Component {
       return (
         <BoxItemCart>
           <BoxProductNameAndDelete>
-            <TagP>{product.name}</TagP>
+            <TagPnameProduct>{product.name.toUpperCase()}</TagPnameProduct>
             <BtnDelete onClick={() => this.props.deleteProductCart(product.id)}>
               <ImgBtnDelete src={ImgDelete} alt="botão para deletar produto" />
             </BtnDelete>
           </BoxProductNameAndDelete>
           <TagP>Quantidade: {product.quantidade}</TagP>
-          <TagP>Total do produto: R${product.price * product.quantidade}</TagP>
+          <TagP>Valor do produto: R${Number(product.price * product.quantidade).toFixed(2).replace('.',',')}</TagP>
         </BoxItemCart>
       );
     });
@@ -102,7 +121,7 @@ class Cart extends React.Component {
           <BoxDetailsCart>
             {infosProductsCart}
             <div>
-              <p>Total: R$ {totalValue} </p>
+              <p>Total: R$ {Number(totalValue).toFixed(2).replace('.',',')} </p>
             </div>
           </BoxDetailsCart>
 
@@ -133,7 +152,7 @@ class Cart extends React.Component {
           </BoxSelectCart>
 
           <BoxBtnCheckout>
-            <BtnCheckout>Finalizar Compra</BtnCheckout>
+            <BtnCheckout onClick={this.checkout}>Finalizar Compra</BtnCheckout>
           </BoxBtnCheckout>
         </BoxCart>
       </ProductCartContainer>

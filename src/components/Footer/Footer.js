@@ -11,13 +11,15 @@ const FooterContainer = styled.div`
 
 const BoxFooter = styled.div`
   width: 70vw;
-  height: 5vh;
+  height: 10vh;
   margin: 0 auto;
   display: flex;
   flex-direction: block;
   justify-items: center;
   justify-content: space-around;
   align-items: center;
+  color: white;
+  font-size: 1.2em;
 `;
 
 const Paragrafo = styled.p`
@@ -32,9 +34,16 @@ const LinksMidia = styled.a`
   color: inherit;
   display: flex;
   flex-direction: block;
+  padding: 5px;
+
+  &:hover{
+    color: #f2970b
+  }
 `;
 const DivIcons = styled.div`
   display: flex;
+  width: 150px;
+  justify-content: space-between;
 `;
 
 const DivParagrafos = styled.div`
@@ -47,13 +56,13 @@ class Footer extends React.Component {
       <FooterContainer>
         <BoxFooter>
           <DivIcons>
-            <LinksMidia href="www.instagram.com">
+            <LinksMidia href="https://facebook.com" target='_blank'>
               <FacebookIcon />{" "}
             </LinksMidia>
-            <LinksMidia href="facebook.com">
+            <LinksMidia href="https://instagram.com" target='_blank'>
               <InstagramIcon />
             </LinksMidia>
-            <LinksMidia href="twitter.com">
+            <LinksMidia href="https://twitter.com/" target='_blank'>
               <TwitterIcon />
             </LinksMidia>
           </DivIcons>

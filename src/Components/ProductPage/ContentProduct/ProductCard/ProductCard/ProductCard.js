@@ -9,15 +9,33 @@ const ProductCardContainer = styled.div`
 
 const ProductCardBox = styled.div`
   margin: 15px;
+  text-align: center;
+  padding: 10px;
 
   &:hover {
     box-shadow: 0px 0px 10px 10px #f1f1f1;
   }
 `;
 
-const PriceP = styled.p`
+const TagP = styled.p`
   margin: 0;
 `;
+
+const BtnAddCart = styled.button`
+  border: none;
+  background-color: #f2970b;
+  border-radius: 5px;
+  transition: 0.5s;
+  margin-top: 5px;
+
+  &:focus {
+    outline: none;
+  }
+
+   &:hover {
+    transform: scale(1.1);
+  }
+`
 
 export default class ProductCard extends React.Component {
   render() {
@@ -58,12 +76,12 @@ export default class ProductCard extends React.Component {
       return (
         <ProductCardBox>
           <img src={product.photos} alt='imagem do produto'/>
-          <h3>{product.name}</h3>
-          <p>{product.description}</p>
-          <PriceP>Valor: {product.price}</PriceP>
-          <button onClick={() => this.props.onClickAddToCart(product)}>
+          <h4>{product.name}</h4>
+          <TagP>{product.description}</TagP>
+          <TagP>Valor: R$ {Number(product.price).toFixed(2).replace('.', ',')}</TagP>
+          <BtnAddCart onClick={() => this.props.onClickAddToCart(product)}>
             Adicionar Produtos
-          </button>
+          </BtnAddCart>
         </ProductCardBox>
       );
     });

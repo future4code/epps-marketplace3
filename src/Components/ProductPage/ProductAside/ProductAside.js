@@ -3,9 +3,11 @@ import styled from "styled-components";
 
 const ProductAsideContainer = styled.div`
   background-color: #f2970b;
-  width: 300px;
+  width: 350px;
   display: flex;
   justify-content: center;
+  margin: 20px 10px;
+  border-radius: 10px;
 `;
 
 const TitleAside = styled.h1`
@@ -72,12 +74,12 @@ export default class ProductAside extends React.Component {
 
           <AsideBoxItem>
             <SelectFiltro>
-              <option disabled selected>
-                Categoria
-              </option>
-              <option>Máscara</option>
-              <option>Cozinha</option>
-              <option>Bijuterias</option>
+              <option disabled selected> Categoria</option>
+              <option value={'acessorios'}>Acessórios</option>
+              <option value={'festa'}>Aniversário e festas</option>
+              <option value={'bijuterias'}>Bijuterias</option>
+              <option value={'jogos'}>Jogos e Brinquedos</option>
+              <option value={'roupas'}>Roupas</option>
             </SelectFiltro>
           </AsideBoxItem>
           {/* <button onClick={this.props.filterProducts}>Buscar</button> */}
