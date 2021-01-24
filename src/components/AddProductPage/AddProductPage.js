@@ -92,6 +92,15 @@ class AddProductPage extends Component {
       )
       .then((response) => {
         alert("Produto cadastrado!");
+        this.setState({
+          inputName: "",
+          inputDescription: "",
+          inputPrice: 0,
+          paymentMethod: "",
+          selectCategory: "",
+          inputImage: [],
+          selectinstallments: 1,
+        });
       })
       .catch((error) => {
         alert("Erro ao cadastrar produto,tente novamente.");
